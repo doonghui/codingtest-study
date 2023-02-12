@@ -30,7 +30,6 @@ public class Main {
             int n = Integer.parseInt(br.readLine());
             arr[i] = DFS(k,n);
         }
-
         for(int x : arr)
             bw.write(x+"\n");
 
