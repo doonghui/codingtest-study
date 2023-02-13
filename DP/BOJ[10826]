@@ -1,0 +1,39 @@
+import java.io.*;
+import java.math.BigInteger;
+
+public class Main {
+
+    static BigInteger[] ch = new BigInteger[10001];
+    static BigInteger Solution(int n) {
+        if(n == 0) return BigInteger.valueOf(0);
+
+        if(n == 1 || n == 2)  return ch[n] = BigInteger.valueOf(1);
+        if(ch[n] != null) return ch[n];
+
+        return ch[n] = Solution(n-1).add(Solution(n-2));
+
+
+    }
+
+
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int t = Integer.parseInt(br.readLine());
+
+
+        bw.write(Solution(t)+"");
+        bw.flush();
+        bw.close();
+
+
+
+
+
+
+
+    }
+}
