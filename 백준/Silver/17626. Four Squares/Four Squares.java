@@ -11,23 +11,15 @@ public class Main {
     static int[] dp;
     static int n, m;
     static int cnt = 4;
-    static int sum = 0;
+    static int min;
 
-    static void Sol(int L,int end) {
-        if(cnt == end)
-            return;
-        if(L == end) {
-            if(sum == n)
-                cnt = end;
-            return;
+    static void Sol(int i) {
+
+
+        for(int j =1;j*j <= i;j++) {
+            int tmp = i - j*j;
+            min = Math.min(dp[tmp],min);
         }
-
-        for(int i = m;i>=1;i--) {
-            sum += Math.pow(i,2);
-            Sol(L+1,end);
-            sum -= Math.pow(i,2);
-        }
-
 
     }
 
@@ -39,18 +31,16 @@ public class Main {
 
         n = Integer.parseInt(br.readLine());
 
-        m = (int) Math.sqrt(n);
-        dp = new int[5];
-        for(int i=1; i<4;i++) {
-            Sol(0,i);
-            if(cnt == i)
-                break;
+        dp = new int[n+1];
+        dp[1] = 1;
+        for(int i=2; i<=n;i++) {
+            min = Integer.MAX_VALUE;
+            Sol(i);
+            dp[i] = min +1;
         }
-        if(cnt == 4)
-            bw.write(cnt+" ");
-        else
-            bw.write(cnt+" ");
 
+
+        bw.write(dp[n]+" ");
         br.close();
         bw.flush();
         bw.close();
