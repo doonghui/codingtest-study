@@ -6,23 +6,25 @@ public class Main {
     static int n;
     static int cnt;
 
-    static void Sol(Integer[] A, Integer[] B, int x, int y) {
-        cnt = 0;
-        int tmp = 0;
-        for(int i =0; i<x;i++){
-            for(int j =tmp; j<y;j++){
-                if(A[i] <=B[j]){
-                    tmp = j;
-                    continue;
+    static int BinarySearch(int A, Integer[] B, int x, int y) {
+
+            int start = 0;
+            int end = y;
+            int count = 0;
+            while (start <= end) {
+               int mid = (start + end) / 2;
+                if (A > B[mid]) {
+                    start = mid+1;
+                    count = mid +1;
+                } else {
+                    end = mid-1;
+
                 }
-                cnt = cnt + y-j;
-                break;
             }
-        }
 
+
+        return count;
     }
-
-
 
 
     public static void main(String[] args) throws IOException {
@@ -45,11 +47,14 @@ public class Main {
             for (int k = 0; k < y; k++)
                 B[k] = Integer.parseInt(st.nextToken());
 
-            Arrays.sort(A,Collections.reverseOrder());
-            Arrays.sort(B,Collections.reverseOrder());
-            Sol(A,B,x,y);
+            Arrays.sort(B);
 
-            bw.write(cnt+"\n");
+            int ans = 0;
+            for(int l =0;l<x;l++) {
+                ans += BinarySearch(A[l],B,x,y-1);
+            }
+
+            bw.write(ans+ "\n");
         }
 
 
