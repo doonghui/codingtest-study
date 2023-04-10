@@ -10,17 +10,13 @@ public class Main {
         dy[0] = arr[0];
 
         for (int lt = 1; lt < n; lt++) {
-            int max = Integer.MIN_VALUE;
+            dy[lt] = arr[lt];
             for (int rt = lt - 1; rt >= 0; rt--) {
                 if (arr[lt] > arr[rt]) {
-                    if (max < dy[rt] + arr[lt]) {
-                        max = dy[rt] + arr[lt];
-                        dy[lt] = max;
-                    }
+                    dy[lt] = Math.max(dy[lt], dy[rt] + arr[lt]);
                 }
             }
-            if(dy[lt] == 0)
-                dy[lt] = arr[lt];
+
         }
 
 
@@ -41,9 +37,10 @@ public class Main {
         }
 
 
+        br.close();
         bw.write(Arrays.stream(Sol(n, arr)).max().getAsInt() + "");
-
         bw.flush();
+        bw.close();
 
 
     }
