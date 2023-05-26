@@ -6,7 +6,7 @@ public class Main {
 
     static ArrayList<ArrayList<Integer>> gragh;
     static int n;
-    static int[] dist;
+    static boolean[] visited;
     static int max = 0;
     static int tmp = 0;
 
@@ -19,12 +19,11 @@ public class Main {
         }
 
         for (Integer x : gragh.get(n)) {
-            if(dist[x] == 0){
+            if(visited[x] == false){
                 tmp +=1;
-                dist[x] = 1;
+                visited[x] = true;
                 dfs(x);
                 tmp -= 1;
-                dist[x] = 0;
             }
 
 
@@ -55,8 +54,8 @@ public class Main {
             gragh.get(b).add(a);
         }
 
-        dist = new int[n+1];
-        dist[1] = 1;
+        visited = new boolean[n+1];
+        visited[1] = true;
         dfs(1);
         if(max % 2 ==0)
             bw.write("No");
