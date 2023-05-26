@@ -1,6 +1,16 @@
 import java.io.*;
 import java.util.*;
 
+class Point {
+    int x;
+    int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+}
 
 public class Main {
 
@@ -13,17 +23,23 @@ public class Main {
     static int[] dx = {1, 0, -1, 0};
     static int[] dy = {0, 1, 0, -1};
 
-    static void dfs(int x, int y) {
+    static void bfs(int x, int y) {
+        Queue<Point> q = new LinkedList<Point>();
+        q.add(new Point(x,y));
 
-        for(int i =0;i<4;i++) {
-            int nx = x + dx[i];
-            int ny  = y + dy[i];
-            if(nx >=0 && nx<n && ny >=0 && ny < m && gragh[nx][ny] == 1) {
-                gragh[nx][ny] = 0;
-                tmp += 1;
-                dfs(nx,ny);
+        while(!q.isEmpty()){
+            Point temp = q.poll();
+            for(int i =0;i<4;i++) {
+                int nx = temp.x + dx[i];
+                int ny  = temp.y + dy[i];
+                if(nx >=0 && nx<n && ny >=0 && ny < m && gragh[nx][ny] == 1) {
+                    gragh[nx][ny] = 0;
+                    q.add(new Point(nx,ny));
+                    tmp += 1;
+                }
             }
         }
+
 
 
 
@@ -51,15 +67,15 @@ public class Main {
             for(int j =0;j<m;j++) {
                 if(gragh[i][j] == 1){
                     tmp = 0;
-                    dfs(i,j);
+                    bfs(i,j);
                     count++;
-                   max = Math.max(max,tmp);
+                    max = Math.max(max,tmp);
 
                 }
             }
         }
 
-        if(count == 0 )
+        if(count == 0)
             max = 0;
 
 
