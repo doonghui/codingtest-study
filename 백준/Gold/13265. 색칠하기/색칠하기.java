@@ -1,5 +1,15 @@
+import java.awt.*;
 import java.io.*;
 import java.util.*;
+//
+//class Point {
+//    int x;
+//    int y;
+//    public Point(int x, int y) {
+//        this.x = x;
+//        this.y = y;
+//    }
+//}
 
 
 public class Main {
@@ -7,23 +17,25 @@ public class Main {
     static int a, b;
     static ArrayList<ArrayList<Integer>> arr;
     static int[] circle;
-    static boolean isPossible = true;
 
 
-    static void dfs(int now) {
-        if(!isPossible)
-            return;
-        for (Integer next : arr.get(now)) {
-            if(circle[next] == 0){
-                circle[next] = 3-circle[now];
-                dfs(next);
+    static String bfs(int p) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(p);
+        circle[p] = 1;
+        while(!q.isEmpty()) {
+            Integer tmp = q.poll();
+            for(Integer in : arr.get(tmp)) {
+                if(circle[in] == 0) {
+                    circle[in] = 3-circle[tmp];
+                    q.add(in);
+                }
+                if(circle[in] == circle[tmp])
+                    return "impossible";
             }
-            if(circle[next] == circle[now]){
-                isPossible = false;
-                return;
-            }
-
         }
+
+        return "possible";
 
 
     }
@@ -54,24 +66,19 @@ public class Main {
             }
 
             for (int t = 1; t <= a; t++) {
-                if (!isPossible) break;
-                if (circle[t] == 0) {
-                    circle[t] = 1;
-                    dfs(t);
+                if (arr.get(t).size() != 0) {
+                    bw.write(bfs(t)+"\n");
+                    break;
                 }
             }
 
-            if (isPossible)
-                bw.write("possible\n");
-            else
-                bw.write("impossible\n");
-
-            isPossible = true;
 
         }
 
 
+
         br.close();
+//        bw.write( " ");
         bw.flush();
         bw.close();
 
