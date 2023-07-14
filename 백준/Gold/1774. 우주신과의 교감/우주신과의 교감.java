@@ -4,12 +4,10 @@ import java.util.*;
 
 
 class Point {
-    int num;
     int x;
     int y;
 
-    public Point(int num,int x, int y) {
-        this.num = num;
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -58,7 +56,6 @@ public class Main {
     static void Sol(ArrayList<Edge> arr,int n) {
         for(int i =1; i<=n;i++) {
             for(int j=i+1;j<=n;j++) {
-
                     double d1 = Math.pow(p[i].x-p[j].x,2);
                     double d2 = Math.pow(p[i].y-p[j].y,2);
                     double cost = Math.sqrt(d1+d2);
@@ -102,7 +99,7 @@ public class Main {
             st = new StringTokenizer(br.readLine()," ");
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
-            p[i] = new Point(i,x,y);
+            p[i] = new Point(x,y);
         }
 
         for(int j = n; j<n+m;j++){
@@ -114,7 +111,7 @@ public class Main {
 
         Sol(arr,n);
 
-        bw.write(String.format("%.2f",answer)+" ");
+        bw.write(String.format("%.2f",answer)+" ");     // Math.round() 는 뒤에 0 절삭..
         bw.flush();
 
 
