@@ -36,8 +36,8 @@ public class Main {
         else unf[fa] = fb;
     }
 
-    static long Sol(ArrayList<Edge> arr) {
-        long ans = 0;
+    static int Sol(ArrayList<Edge> arr) {
+        int ans = 0;
 
         for(Edge ed : arr) {
             if(Find(ed.v1) != Find(ed.v2)) {
