@@ -7,14 +7,16 @@ class Solution {
             return answer;
         }
         answer = new int[n];
-        int v;
-        int k = n;
-        for(int j =0; j<k;j++) {
-            v = s / n;
-            answer[j] = v;
-            s = s -v;
-            n--;
-        
+        if(s % n == 0) {
+            for(int i =0; i<n;i++) {
+                answer[i] = s/n;
+            }
+        } else{
+            int rem = n - (s%n);
+            for(int j =0; j<rem;j++) answer[j] = s/n;
+            
+            for(int k=rem;k<n;k++) answer[k] = s/n +1;
+            
         }
                  
         
