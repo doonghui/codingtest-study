@@ -1,52 +1,59 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 
 
 class Edge implements Comparable<Edge> {
-    int v1;
-    int v2;
+    int vex;
     int cost;
 
-    public Edge(int v1,int v2, int cost) {
-        this.v1 = v1;
-        this.v2 = v2;
+    public Edge(int vex,int cost) {
+        this.vex= vex;
         this.cost = cost;
     }
+
     @Override
     public int compareTo(Edge eo) {
-        return this.cost - eo.cost;
+        if(this.cost < eo.cost) return -1;
+        else return 1;
     }
+
 
 }
 
-
 public class Main {
-    static int[] unf;
 
-    static int Find(int x) {
-        if(unf[x] == x) return x;
-        else return unf[x] = Find(unf[x]);
-    }
+    static int v,e;
+    static int[] ch;
+    static  ArrayList<ArrayList<Edge>> arr;
 
-    static void Union(int a,int b) {
-        int fa = Find(a);
-        int fb = Find(b);
-        if(fa > fb) unf[fb] = fa;
-        else unf[fa] = fb;
-    }
 
-    static int Sol(ArrayList<Edge> arr) {
+
+    static int Sol() {
         int ans = 0;
 
-        for(Edge ed : arr) {
-            if(Find(ed.v1) != Find(ed.v2)) {
-                ans += ed.cost;
-                Union(ed.v1,ed.v2);
+        PriorityQueue<Edge> pQ = new PriorityQueue<>();
+        pQ.add(new Edge(1,0));
+
+        while(!pQ.isEmpty()) {
+            Edge tmp = pQ.poll();
+
+            if(ch[tmp.vex] == 0) {
+                ch[tmp.vex] = 1;
+                for(Edge ed: arr.get(tmp.vex)) {
+                    if(ch[ed.vex] == 0)pQ.add(new Edge(ed.vex,ed.cost));
+                }
+                ans += tmp.cost;
             }
 
-        }
 
+        }
 
 
 
@@ -54,39 +61,46 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IOException {
 
+
+    public static void main(String[] args ) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = null;
 
         st = new StringTokenizer(br.readLine()," ");
 
-        int v = Integer.parseInt(st.nextToken());
-        int e = Integer.parseInt(st.nextToken());
-        ArrayList<Edge> arr = new ArrayList<>();
-        unf = new int[v+1];
-        for(int j =1; j<=v;j++) unf[j] = j;
+        v = Integer.parseInt(st.nextToken());
+        e = Integer.parseInt(st.nextToken());
+        ch = new int[v+1];
 
 
-        for(int i =0; i<e;i++) {
+       arr = new ArrayList<>();
+        for(int j =0;j<=v;j++) arr.add(new ArrayList<Edge>());
+
+        for(int i =0;i<e;i++) {
             st = new StringTokenizer(br.readLine()," ");
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
-            arr.add(new Edge(a,b,c));
+            arr.get(a).add(new Edge(b,c));
+            arr.get(b).add(new Edge(a,c));
         }
 
-        Collections.sort(arr);
 
-
-
-        br.close();
-        bw.write( Sol(arr) + "");
+        bw.write(Sol()+"");
         bw.flush();
         bw.close();
+        br.close();
+
+
+
+
 
 
     }
-}
 
+
+
+
+}
