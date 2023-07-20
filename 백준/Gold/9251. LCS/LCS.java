@@ -33,6 +33,7 @@ public class Main {
         s1 = br.readLine();
         s2 = br.readLine();
 
+        // String -> 문자배열로 바꿔서 넣어줌.
         c1 = s1.toCharArray();
         c2 = s2.toCharArray();
 
