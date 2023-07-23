@@ -1,11 +1,8 @@
-import org.w3c.dom.Node;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.*;
-
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -13,8 +10,9 @@ public class Main {
     static int[] arr;
     static int[] dp;
 
-    static void solution() {
+    static int solution() {
         int max;
+        int answer =1;
         dp[0] = 1;
 
         for(int i=1;i<n;i++){
@@ -26,11 +24,12 @@ public class Main {
 
             }
             dp[i] = max + 1;
+            answer = Math.max(answer,dp[i]);
         }
 
 
 
-
+    return answer;
     }
 
 
@@ -48,13 +47,12 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        solution();
 
-        Arrays.sort(dp);
+
 
 
         br.close();
-        bw.write(dp[n-1] + "");
+        bw.write( solution()+ "");
         bw.flush();
         bw.close();
 
