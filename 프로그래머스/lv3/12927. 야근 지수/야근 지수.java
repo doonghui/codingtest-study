@@ -1,25 +1,28 @@
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class Solution {
     public long solution(int n, int[] works) {
-            long answer = 0;
-        PriorityQueue<Integer> PQ = new PriorityQueue<>(Collections.reverseOrder());
-
-        for (int i = 0; i < works.length; i++) {
-            PQ.offer(works[i]);
+        long answer = 0;
+        
+        Queue<Integer> pQ = new PriorityQueue<>(Collections.reverseOrder());
+        
+        for(int i : works) pQ.add(i);
+        
+        while(n != 0) { 
+            Integer work = pQ.poll();
+            if(work == 0) break;                // work 가 0이나온다는 말은 더이상 작업할게 없다는 말이니 break;
+            work -= 1; 
+            n--;
+            pQ.add(work);
         }
-
-        for (int i = 0; i < n; i++) {
-            PQ.offer(PQ.poll()-1);
+        
+        while(!pQ.isEmpty()) {
+            answer += Math.pow(pQ.poll(),2);
         }
-
-        while(!PQ.isEmpty()) {
-            long p = PQ.poll();
-            answer += p > 0 ? Math.pow(p, 2) : 0;
-        }
-
+        
+        
+        
+        
         return answer;
-
     }
 }
