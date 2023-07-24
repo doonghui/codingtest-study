@@ -18,13 +18,15 @@ class Solution {
 
     public int solution(String begin, String target, String[] words) {
          int answer = 0;
+        boolean flag = false;
         int beginLen = begin.length();
         boolean[] visited = new boolean[words.length];      // 한번 방문한곳 다시 방문하지 않기 위해
 
         // words 안에 target 이 있는지 확인
         for (String str : words) {
-            if (target.equals(str)) return answer;
+            if (target.equals(str)) flag = true;
         }
+        if (!flag) return answer;
 
         Queue<Node> q = new LinkedList<>();
         q.offer(new Node(begin,0));
