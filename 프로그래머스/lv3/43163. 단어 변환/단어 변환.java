@@ -37,9 +37,9 @@ class Solution {
                 int tmp = 0;
                 if (!visited[i]) {
                     for (int j = 0; j < beginLen; j++) {
-                        if (words[i].charAt(j) == nod.word.charAt(j)) tmp++;
+                        if (words[i].charAt(j) != nod.word.charAt(j)) tmp++;
                     }
-                    if (beginLen - tmp == 1) {
+                    if (tmp == 1) {
                         visited[i] = true;
                         if (words[i].equals(target)) return nod.count + 1;
                         q.offer(new Node(words[i],nod.count+1));
