@@ -8,8 +8,6 @@ public class Main {
 
     static int n;
     static int[][] board;
-    static int[] dx = {-1, 1, 0, 0};        // 상,하,좌,우
-    static int[] dy = {0, 0, -1, 1};
     static int maxCnt = 5;
     static int max = 0;
 
@@ -47,7 +45,6 @@ public class Main {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) tmp = Math.max(tmp,board[i][j]);
             }
-
             max = Math.max(max,tmp);
             return;
         }
@@ -66,7 +63,7 @@ public class Main {
 
     static int[][] game(int[][] board,int location) {
         int[][] newBoard = new int[n][n];
-        if (location == 0) {
+        if (location == 0) {                // 상
             for (int y = 0; y < n; y++) {
                 int idx = 0;
                 int block = -1;
@@ -87,7 +84,7 @@ public class Main {
                 }
             }
 
-        } else if (location == 1) {
+        } else if (location == 1) {         // 하
             for (int y = 0; y < n; y++) {
                 int idx = n - 1;
                 int block = -1;
@@ -106,7 +103,7 @@ public class Main {
 
                 }
             }
-        } else if (location == 2) {
+        } else if (location == 2) {                 // 좌
             for (int x = 0; x < n; x++) {
                 int idx = n - 1;
                 int block = -1;
@@ -126,7 +123,7 @@ public class Main {
 
                 }
             }
-        } else {
+        } else {                                    // 우
             for (int x = 0; x < n; x++) {
                 int idx = 0;
                 int block = -1;
@@ -135,7 +132,6 @@ public class Main {
                     else if (board[x][y] == block) {
                         newBoard[x][idx - 1] = board[x][y] * 2;
                         block = -1;
-
                     } else {
                         newBoard[x][idx] = board[x][y];
                         idx++;
