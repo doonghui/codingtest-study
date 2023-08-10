@@ -36,7 +36,7 @@ public class Main {
             for (int j = 0; j < m; j++)
                 map[i][j] = Integer.parseInt(st.nextToken());
         }
-        map[x][y] = 2;
+        map[x][y] = 2;        // 초기 위치 청소
         bw.write(sol(x, y, dir, 1) + "");
         br.close();
         bw.flush();
@@ -52,7 +52,7 @@ public class Main {
             int cnt = 0;
 
             while (cnt < 4) {
-                dir--;
+                dir--;                // 반시계 방향이므로
                 if (dir < 0) dir = 3;
                 int nx = x + dx[dir];
                 int ny = y + dy[dir];
@@ -68,7 +68,7 @@ public class Main {
                 cnt++;
             }
 
-            if (cnt == 4) {
+            if (cnt == 4) {             // 동서남북 모두 청소할 수 없는 곳일 때
                 int tmp = dir - 2;
                 if (tmp == -1) tmp = 3;
                 else if (tmp == -2) tmp = 2;
