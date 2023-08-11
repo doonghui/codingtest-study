@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int n,sum,other;
+    static int n;
     static int[][] map;
     static int min = Integer.MAX_VALUE;
 
@@ -45,14 +45,10 @@ public class Main {
     public static void sol(int count, int[] check, int start) {
         if (count == n / 2) {
             ArrayList<Integer> sumCheck = new ArrayList<>();
-             sum = 0;
-             other = 0;
             stats(check);
-            int sub = Math.abs(sum - other);
-            min = Math.min(min, sub);
             return;
         }
-        for (int i = start; i <= n; i++) {
+        for (int i = start; i <= n; i++) {              // 조합으로 n/2 개의 수를 찾아내야 한다.
             check[i] = 1;
             sol(count + 1, check, i + 1);
             check[i] = 0;
@@ -61,7 +57,8 @@ public class Main {
     }
 
     public static void stats(int[] check) {
-
+       int sum = 0;
+       int other = 0;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                 if(check[i] == 1 && check[j] == 1) {
@@ -73,6 +70,8 @@ public class Main {
 
             }
         }
+        int sub = Math.abs(sum - other);
+        min = Math.min(min, sub);
 
     }
 
