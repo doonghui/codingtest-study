@@ -125,7 +125,6 @@ class Main {
         int tmp = map[x][y];
         for (int k = y; k >= 0; k--) {
             if (!visited[x][k]) {           // 21112, 2112
-                visited[x][k] = true;
                 if (map[x][k] == tmp) {
                     count++;
                     if (count == l) return true;
@@ -163,7 +162,6 @@ class Main {
         int tmp = map[x][y];
         for (int k = x; k >= 0; k--) {
             if (!visited[k][y]) {
-                visited[k][y] = true;
                 if (map[k][y] == tmp) {
                     count++;
                     if (count == l) return true;
