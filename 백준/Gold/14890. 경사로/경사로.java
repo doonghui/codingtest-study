@@ -2,25 +2,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.*;
-import java.lang.*;
-
-class Point implements Comparable<Point> {
-    int num;
-    int plays;
-
-    public Point(int num, int plays) {
-        this.num = num;
-        this.plays = plays;
-    }
-
-    public int compareTo(Point o) {
-        return this.plays - o.plays;
-    }
-
-
-}
-
+import java.util.StringTokenizer;
 
 class Main {
 
@@ -57,7 +39,7 @@ class Main {
     }
 
     static void row() {
-        visited = new boolean[n][n];
+        visited = new boolean[n][n];  //  겹치지 않게 하기 위해 ex) 21112
         for (int i = 0; i < n; i++) {
             int num = map[i][0];
             boolean flag = false;
@@ -65,13 +47,13 @@ class Main {
                 if (map[i][j] == num) {
                     continue;
                 }
-                if (!visited[i][j] && map[i][j] == num + 1) {
+                if (map[i][j] == num + 1) {
                     if (!isPossibleUpSlope(i, j - 1, 0)) {
                         flag = true;
                         break;
                     }
                     num = map[i][j];
-                } else if (!visited[i][j] && map[i][j] == num - 1) {
+                } else if (map[i][j] == num - 1) {
                     if (!isPossibleDownSlope(i, j, 0)) {
                         flag = true;
                         break;
@@ -99,13 +81,13 @@ class Main {
                 if (map[i][j] == num) {
                     continue;
                 }
-                if (!visited[i][j] && map[i][j] == num + 1) {
-                    if (!isPossibleUpSlopeColumn(i-1,j, 0)) {
+                if (map[i][j] == num + 1) {
+                    if (!isPossibleUpSlopeColumn(i - 1, j, 0)) {
                         flag = true;
                         break;
                     }
                     num = map[i][j];
-                } else if (!visited[i][j] && map[i][j] == num - 1) {
+                } else if (map[i][j] == num - 1) {
                     if (!isPossibleDownSlopeColumn(i, j, 0)) {
                         flag = true;
                         break;
@@ -129,51 +111,48 @@ class Main {
         int tmp = map[x][y];
         for (int k = y; k < n; k++) {
             visited[x][k] = true;
-            if (map[x][k] == tmp) count++;
-            else {
-                break;
-            }
-            if (count == l) {
-                return true;
+            if (map[x][k] == tmp) {
+                count++;
+                if (count == l) return true;
+            } else {
+                return false;
             }
         }
-
         return false;
     }
 
     static boolean isPossibleUpSlope(int x, int y, int count) {
         int tmp = map[x][y];
         for (int k = y; k >= 0; k--) {
-            if (!visited[x][k]) {
+            if (!visited[x][k]) {           // 21112, 2112
                 visited[x][k] = true;
-                if (map[x][k] == tmp) count++;
-                else {
+                if (map[x][k] == tmp) {
+                    count++;
+                    if (count == l) return true;
+
+                } else {
                     break;
                 }
             } else {
                 return false;
             }
 
-            if (count == l) {
-                return true;
-            }
+
         }
 
         return false;
     }
 
 
-
     static boolean isPossibleDownSlopeColumn(int x, int y, int count) {
         int tmp = map[x][y];
         for (int k = x; k < n; k++) {
             visited[k][y] = true;
-            if (map[k][y] == tmp) count++;
-            else {
+            if (map[k][y] == tmp) {
+                count++;
+                if (count == l) return true;
+            } else {
                 break;
-            }
-            if (count == l) {
-                return true;
             }
         }
 
@@ -185,25 +164,21 @@ class Main {
         for (int k = x; k >= 0; k--) {
             if (!visited[k][y]) {
                 visited[k][y] = true;
-                if (map[k][y] == tmp) count++;
-                else {
-                    break;
+                if (map[k][y] == tmp) {
+                    count++;
+                    if (count == l) return true;
+                } else {
+                    return false;
                 }
             } else {
                 return false;
             }
 
-            if (count == l) {
-                return true;
-            }
+
         }
 
         return false;
     }
-
-
-
-
 
 
 }
