@@ -44,7 +44,6 @@ public class Main {
 
     public static void sol(int count, int[] check, int start) {
         if (count == n / 2) {
-            ArrayList<Integer> sumCheck = new ArrayList<>();
             stats(check);
             return;
         }
