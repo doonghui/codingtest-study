@@ -9,7 +9,7 @@ class Solution {
     
     public int solution(String[] user_id, String[] banned_id) {
         int[] check = new int[user_id.length];
-        visited = new ArrayList<>();
+        visited = new ArrayList<>();            // 불량 아이디 목록들
 
         
  
@@ -23,7 +23,7 @@ class Solution {
     
  static void dfs(int check[], String[] user_id, String[] banned_id, int cnt) {
         if (cnt == banned_id.length) {
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<>();            // 이미 존재하는 목록인지 확인하기 위해
             for (int i = 0; i < user_id.length; i++) {
                     list.add(check[i]);
             }
@@ -40,7 +40,7 @@ class Solution {
                         }
                         
                     }
-                    if(tmp == list.size()) {
+                    if(tmp == list.size()) {        // 이미 존재하는 목록
                             flag = true;
                             break;
                         }
