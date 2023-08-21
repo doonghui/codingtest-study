@@ -55,10 +55,9 @@ class Solution {
         }
 
         for (int i = 0; i < user_id.length; i++) {
-            int count = 0;
             if (check[i] == 1) continue;
             if (user_id[i].length() != banned_id[cnt].length()) continue;
-
+            int count = 0;
             for (int j = 0; j < user_id[i].length(); j++) {
                 if (user_id[i].charAt(j) == banned_id[cnt].charAt(j) || banned_id[cnt].charAt(j) == '*') count++;
             }
