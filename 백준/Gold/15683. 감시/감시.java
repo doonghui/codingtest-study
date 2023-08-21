@@ -80,7 +80,7 @@ class Main {
 
             }
             sol(cctv, end, cnt + 1, newMap);
-            newMap = clone(map);
+            newMap = clone(map);        // 다른 방향도 확인해보기 위해 전단계로 되돌린다.
         }
 
 
