@@ -1,29 +1,28 @@
 import java.util.*;
 
-class Airplane implements Comparable<Airplane>{
+class Airplane implements Comparable<Airplane> {
     String fromTicket;
     String toTicket;
-    
-    public Airplane(String fromTicket,String toTicket) {
+
+    public Airplane(String fromTicket, String toTicket) {
         this.fromTicket = fromTicket;
-        this.toTicket = toTicket; 
+        this.toTicket = toTicket;
     }
-    
+
     @Override
     public int compareTo(Airplane ai) {
-        
-        if(this.toTicket.charAt(0) == ai.toTicket.charAt(0)) {
-            if(this.toTicket.charAt(1) == ai.toTicket.charAt(1)) {
-                return (int)(this.toTicket.charAt(2)) - (int)(ai.toTicket.charAt(2));
+
+        if (this.toTicket.charAt(0) == ai.toTicket.charAt(0)) {
+            if (this.toTicket.charAt(1) == ai.toTicket.charAt(1)) {
+                return (int) (this.toTicket.charAt(2)) - (int) (ai.toTicket.charAt(2));
             } else
-                return (int)(this.toTicket.charAt(1)) - (int)(ai.toTicket.charAt(1));
-            
+                return (int) (this.toTicket.charAt(1)) - (int) (ai.toTicket.charAt(1));
+
         } else
-            return (int)(this.toTicket.charAt(0)) - (int)(ai.toTicket.charAt(0));
-        
+            return (int) (this.toTicket.charAt(0)) - (int) (ai.toTicket.charAt(0));
+
     }
 }
-
 
 class Solution {
        static ArrayList<String> ans;
@@ -57,7 +56,6 @@ class Solution {
     
     
   static void dfs(String[][] tickets, int cnt, ArrayList<Airplane> airplane) {
-        if (flag) return;
 
         if (cnt == tickets.length + 1) {
             flag = true;
