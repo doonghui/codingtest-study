@@ -45,7 +45,7 @@ class Solution {
      
                 ans.add("ICN");
 
-        dfs(tickets, 1, airplane);
+        dfs(tickets, airplane);
         
         for(int j=0;j<ans.size();j++)  answer[j] = ans.get(j);
         
@@ -55,9 +55,9 @@ class Solution {
     
     
     
-  static void dfs(String[][] tickets, int cnt, ArrayList<Airplane> airplane) {
+  static void dfs(String[][] tickets, ArrayList<Airplane> airplane) {
 
-        if (cnt == tickets.length + 1) {
+        if (ans.size() == tickets.length + 1) {        //  {{"ICN", "A"}, {"ICN", "B"}, {"B", "ICN"}}
             flag = true;
             return;
         }
@@ -66,8 +66,8 @@ class Solution {
             if (!visited[i] && (airplane.get(i).fromTicket).equals(ans.get(ans.size() - 1))) {
                 visited[i] = true;
                 ans.add(airplane.get(i).toTicket);
-                dfs(tickets, cnt + 1, airplane);
-                if (flag) return;
+                dfs(tickets,airplane);
+                if(flag) return;
                 visited[i] = false;
                 ans.remove(ans.size() - 1);
             }
