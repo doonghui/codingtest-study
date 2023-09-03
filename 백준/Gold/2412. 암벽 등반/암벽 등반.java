@@ -36,7 +36,7 @@ class Main {
         t = Integer.parseInt(st.nextToken());
 
         gragh = new ArrayList<>();
-        for(int k =0;k<=t;k++) gragh.add(new ArrayList<Point>());
+        for (int k = 0; k <= t; k++) gragh.add(new ArrayList<Point>());
 
 
         for (int i = 0; i < n; i++) {
@@ -65,19 +65,17 @@ class Main {
             Point tmp = q.poll();
 
             for (int j = tmp.y - 2; j <= tmp.y + 2; j++) {
-                if(j <0 || j>t)continue;
-                for (Point po : gragh.get(j)) {
-                    if (po.visited) continue;
-                    if (Math.abs(tmp.x - po.x) <= 2) {
-                        if (po.y == t) return tmp.cnt + 1;
-                        po.visited = true;
-                        po.cnt = tmp.cnt + 1;
-                        q.add(po);
+                if (j < 0 || j > t) continue;
+                for (Point nv : gragh.get(j)) {
+                    if (nv.visited) continue;
+                    if (Math.abs(tmp.x - nv.x) <= 2) {
+                        if (nv.y == t) return tmp.cnt + 1;
+                        nv.visited = true;
+                        nv.cnt = tmp.cnt + 1;
+                        q.add(nv);
                     }
                 }
-
             }
-
 
 
         }
