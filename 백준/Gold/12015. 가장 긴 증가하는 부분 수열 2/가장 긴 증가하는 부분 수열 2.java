@@ -10,7 +10,6 @@ class Main {
 
     static int n, m;
     static int[] arr;
-    static int[] dp;
     static ArrayList<Integer> list;
 
 
@@ -40,7 +39,7 @@ class Main {
 
 
     static void sol() {
-        list.add(0);
+        list.add(-1_000_000_001);
 
         for (int i = 0; i < n; i++) {
             if(arr[i] > list.get(list.size()-1)) list.add(arr[i]);
@@ -49,6 +48,9 @@ class Main {
         }
 
     }
+
+
+
 
     static void binarySearch(int idx) {
         int left = 0;
@@ -62,11 +64,12 @@ class Main {
                 right = mid;
             }
         }
-        
-        list.set(left,arr[idx]);
+
+        list.set(right,arr[idx]);
 
     }
 
 }
+
 
 
