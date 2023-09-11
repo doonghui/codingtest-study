@@ -64,7 +64,6 @@ class Main {
             mid = (left + right) / 2;
             if (dist.get(mid) < arr[idx]) left = mid + 1;
             else if (dist.get(mid) > arr[idx]) right = mid-1;
-            else return mid;
 
         }
 
@@ -73,4 +72,3 @@ class Main {
 
 
 }
-
