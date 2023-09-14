@@ -44,7 +44,7 @@ class Main {
                 if (map[i][j] == -1) cleaner.add(new Point(i, j));
             }
         }
-        while (t-- > 0) {
+        while (t-- > 0) {   // t초동안 돌면서 확산 + 공기청정기 작동
             spread();
 
             clean();
@@ -53,8 +53,8 @@ class Main {
         int ans = 0;
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
-                if(map[i][j] != -1 && map[i][j] !=0) {
-                    ans+= map[i][j];
+                if (map[i][j] != -1 && map[i][j] != 0) {
+                    ans += map[i][j];
                 }
 
             }
@@ -62,20 +62,18 @@ class Main {
 
 
         br.close();
-        bw.write(ans+ "\n");
-
-
+        bw.write(ans + "\n");
         bw.flush();
         bw.close();
 
     }
 
     static void spread() {
-        int[][] tmpMap = new int[r][c];
+        int[][] tmpMap = new int[r][c];             // 확산되는 양을 실제 map 에 넣어주기 위해
         Queue<Point> q = new LinkedList<>();
         for (int x = 0; x < r; x++) {
             for (int y = 0; y < c; y++) {
-                if(map[x][y] == -1 || map[x][y] ==0) continue;
+                if (map[x][y] == -1 || map[x][y] == 0) continue;
 
                 for (int k = 0; k < 4; k++) {
                     int nx = x + dx[k];
@@ -107,42 +105,42 @@ class Main {
     static void clean() {
         for (int a = 0; a < 2; a++) {
             int cX = cleaner.get(a).x;
-            int value = 0;
-            if (a == 0) {
+            int value;
+            if (a == 0) {       // 위쪽 공기청정기
                 value = rightClean(cX);
-                value = upClean(new Point(cX, c - 1), new Point(0, c - 1), value);
+                value = upClean(cX, 0, c - 1, value);
                 value = leftClean(0, value);
-                downClean(new Point(0, 0), new Point(cX, 0), value);
-            } else {
+                downClean(0, cX, 0, value);
+            } else {            // 아래쪽 공기청정기
                 value = rightClean(cX);
-                value = downClean(new Point(cX, c-1), new Point(r-1, c-1), value);
-                value = leftClean(r-1, value);
-                upClean(new Point(r-1, 0), new Point(cX, 0), value);
+                value = downClean(cX, r - 1, c - 1, value);
+                value = leftClean(r - 1, value);
+                upClean(r - 1, cX, 0, value);
             }
         }
     }
 
-    static int upClean(Point startP, Point endP, int value) {
-        int tmp = map[endP.x][endP.y];
-        for (int x = endP.x; x < startP.x -1; x++) {
-            if(map[x][endP.y] != -1)
-                map[x][endP.y] = map[x + 1][endP.y];
+    static int upClean(int startX, int endX, int y, int value) {
+        int tmp = map[endX][y];
+        for (int x = endX; x < startX - 1; x++) {
+            if (map[x][y] != -1)
+                map[x][y] = map[x + 1][y];
         }
 
-        map[startP.x-1][startP.y] = value;
+        map[startX - 1][y] = value;
 
 
         return tmp;
     }
 
-    static int downClean(Point startP, Point endP,int value) {
-        int tmp = map[endP.x][endP.y];
-        for (int x = endP.x; x > startP.x+1; x--) {
-            if(map[x][endP.y] != -1)
-                map[x][endP.y] = map[x - 1][endP.y];
+    static int downClean(int startX, int endX, int y, int value) {
+        int tmp = map[endX][y];
+        for (int x = endX; x > startX + 1; x--) {
+            if (map[x][y] != -1)
+                map[x][y] = map[x - 1][y];
         }
 
-        map[startP.x+1][startP.y] = value;
+        map[startX + 1][y] = value;
 
         return tmp;
     }
@@ -153,13 +151,13 @@ class Main {
             map[cX][y] = map[cX][y + 1];
         }
 
-        map[cX][c -2] = value;
+        map[cX][c - 2] = value;
 
         return tmp;
     }
 
     static int rightClean(int cX) {
-        int tmp = map[cX][c-1];
+        int tmp = map[cX][c - 1];
         for (int y = c - 1; y >= 2; y--) {
             map[cX][y] = map[cX][y - 1];
         }
