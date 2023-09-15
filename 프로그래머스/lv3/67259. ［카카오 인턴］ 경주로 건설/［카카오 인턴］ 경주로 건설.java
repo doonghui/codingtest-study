@@ -56,9 +56,12 @@ class Solution {
                         nCost += 600;
                     }
                     
-                    
+                    //  항상 해당 좌표에 도달하는 가장 작은 비용을 선택하는 것이 최소 비용으로 가는 경로가 아닐 수도 있다.
+                    //  방향에 따라 비용이 달라지기 때문에 방향까지 설정을 해줘야한다.
+                    // 반례 : [[0, 0, 0, 0, 0],[0, 1, 1, 1, 0],[0, 0, 1, 0, 0],[1, 0, 0, 0, 1],[1, 1, 1, 0, 0]]
+
                     if(!visited[nx][ny][i] || nCost <= board[nx][ny]) {
-                        visited[nx][ny][i] = true;
+                        visited[nx][ny][i]= true;
                         board[nx][ny] = nCost;
                         q.add(new Point(nx,ny,nCost,i));
                     }
