@@ -50,13 +50,11 @@ class Solution {
         disA = sol(a,disA);
         disB = sol(b,disB);
         
-        answer = dis[a] + dis[b];
+        answer = dis[a] + dis[b];           // 따로 택시탔을 때
         
         for(int l = 1 ; l<=n;l++) {
-            
-            answer = Math.min(answer,dis[l]+disA[l]+disB[l]);
+            answer = Math.min(answer,dis[l]+disA[l]+disB[l]);           // 합승했을 때
         }
-        
         
         return answer;
     }
@@ -73,9 +71,9 @@ class Solution {
         while(!pQ.isEmpty()) {
             Edge now = pQ.poll();
             
-            for(Edge nx : gragh.get(now.vex)) {
-                
-                
+            if(now.cost >dis[now.vex]) continue;            // 이미 그 정점에 최솟값이 있는데 pQ에 더 큰 cost 가 있을 때 더 볼 필요 x
+            
+            for(Edge nx : gragh.get(now.vex )) {
                 if(dis[nx.vex] > now.cost + nx.cost) {
                     dis[nx.vex] = now.cost + nx.cost;
                     pQ.add(new Edge(nx.vex,dis[nx.vex]));
