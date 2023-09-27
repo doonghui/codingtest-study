@@ -10,13 +10,11 @@ import java.util.StringTokenizer;
 
 
 class Chess {
-    int num;
     int x;
     int y;
     int dir;
 
-    public Chess(int num, int x, int y, int dir) {
-        this.num = num;
+    public Chess(int x, int y, int dir) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -60,7 +58,7 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
-            chessValue.add(new Chess(l, a, b, c));
+            chessValue.add(new Chess(a, b, c));
             chessBoard[a][b].add(chessValue.get(l - 1));
         }
 
@@ -103,21 +101,12 @@ public class Main {
                 nx = nowX + dx[chess.dir];
                 ny = nowY + dy[chess.dir];
                 if (nx > 0 && nx <= n && ny > 0 && ny <= n && map[nx][ny] != 2) {
-                    idx = chessBoard[nowX][nowY].indexOf(chess);
                     if (map[nx][ny] == 1) {
                         red(nowX, nowY, nx, ny, idx);
                         if (chessBoard[nx][ny].size() >= 4) return true;
                     } else {
-                        for (int i = idx; i < chessBoard[nowX][nowY].size(); i++) {
-                            Chess c = chessBoard[nowX][nowY].get(i);
-                            c.x = nx;
-                            c.y = ny;
-                            chessBoard[nx][ny].add(c);
-                        }
-                        for (int i = chessBoard[nowX][nowY].size() - 1; i >= idx; i--) {
-                            Chess c = chessBoard[nowX][nowY].get(i);
-                            chessBoard[nowX][nowY].remove(c);
-                        }
+                        move(nowX, nowY, nx, ny, idx);
+
                     }
                     if (chessBoard[nx][ny].size() >= 4) return true;
 
@@ -128,16 +117,7 @@ public class Main {
                 if (chessBoard[nx][ny].size() >= 4) return true;
 
             } else {                                                                         // 흰 색일 때
-                for (int i = idx; i < chessBoard[nowX][nowY].size(); i++) {
-                    Chess c = chessBoard[nowX][nowY].get(i);
-                    c.x = nx;
-                    c.y = ny;
-                    chessBoard[nx][ny].add(c);
-                }
-                for (int i = chessBoard[nowX][nowY].size() - 1; i >= idx; i--) {
-                    Chess c = chessBoard[nowX][nowY].get(i);
-                    chessBoard[nowX][nowY].remove(c);
-                }
+                move(nowX, nowY, nx, ny, idx);
 
 
                 if (chessBoard[nx][ny].size() >= 4) return true;
@@ -162,7 +142,19 @@ public class Main {
             Chess c = chessBoard[nowX][nowY].get(i);
             chessBoard[nowX][nowY].remove(c);
         }
+    }
 
+    static void move(int nowX, int nowY, int nx, int ny, int idx) {
+        for (int i = idx; i < chessBoard[nowX][nowY].size(); i++) {
+            Chess c = chessBoard[nowX][nowY].get(i);
+            c.x = nx;
+            c.y = ny;
+            chessBoard[nx][ny].add(c);
+        }
+        for (int i = chessBoard[nowX][nowY].size() - 1; i >= idx; i--) {
+            Chess c = chessBoard[nowX][nowY].get(i);
+            chessBoard[nowX][nowY].remove(c);
+        }
 
     }
 
