@@ -103,23 +103,17 @@ public class Main {
                 if (nx > 0 && nx <= n && ny > 0 && ny <= n && map[nx][ny] != 2) {
                     if (map[nx][ny] == 1) {
                         red(nowX, nowY, nx, ny, idx);
-                        if (chessBoard[nx][ny].size() >= 4) return true;
                     } else {
                         move(nowX, nowY, nx, ny, idx);
-
                     }
                     if (chessBoard[nx][ny].size() >= 4) return true;
-
                 }
 
             } else if (map[nx][ny] == 1) {                                                  // 빨간색일 때
                 red(nowX, nowY, nx, ny, idx);
                 if (chessBoard[nx][ny].size() >= 4) return true;
-
             } else {                                                                         // 흰 색일 때
                 move(nowX, nowY, nx, ny, idx);
-
-
                 if (chessBoard[nx][ny].size() >= 4) return true;
 
             }
