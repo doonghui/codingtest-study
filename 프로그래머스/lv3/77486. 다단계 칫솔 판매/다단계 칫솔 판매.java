@@ -16,11 +16,12 @@ class Solution {
 
 
             for(int j =0; j<seller.length;j++) {
-                String fromPerson = seller[j];
-                String toPerson = people.get(fromPerson);
+                String fromPerson = seller[j];              // 판매원
+                String toPerson = people.get(fromPerson);   // 추천인
                 int profit = amount[j]*100;
                 while(true) {
-                    if(profit == 0) break;
+                    
+                    if(profit == 0) break;                  // 11,12,13 시간초과이유 : 줘야하는 이익이 0원이라면 계산해도 어차피 또 0원이 나오니 이때는 break
                     if(toPerson.equals("-")) {
                         calculate(fromPerson,profit);
                         break;
