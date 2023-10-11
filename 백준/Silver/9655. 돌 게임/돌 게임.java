@@ -15,12 +15,22 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-        int[] dp = new int[n];
-        int winner = 0;
+        boolean[] dp = new boolean[n + 1];
         String ans = "";
-        if(n % 2 != 1) winner = 1;
 
-        if(winner == 0) ans = "SK";
+//        if(n % 2 == 1) ans = "SK";
+//        else
+//            ans = "CY";
+
+
+        dp[1] = true;
+        dp[2] = false;
+        dp[3] = true;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = !dp[i - 1];
+        }
+        if (dp[n]) ans = "SK";
         else
             ans = "CY";
 
