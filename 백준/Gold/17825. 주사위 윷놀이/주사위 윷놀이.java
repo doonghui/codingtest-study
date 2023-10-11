@@ -129,7 +129,7 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             int idx = pm[i];                        // 말 선택
             int nx = pieces[idx].vex;               // 지금 말이 위치한 칸
-            boolean isBlue = pieces[idx].isBlue;        // 지금 블루인지 아닌지 확인
+            boolean isBlue = pieces[idx].isBlue;        // 지금 지름길인지 아닌지 확인
 
             if (pieces[idx].isFinish) {                          // 이미 도착 칸이면 continue
                 continue;
@@ -170,12 +170,11 @@ public class Main {
             for (int j = 0; j < 4; j++) {
                 if (idx == j) continue;
                 if (pieces[j].isFinish) continue;                // 같은게 도착지점일 때
-                if(pieces[idx].vex  == pieces[j].vex && (nx == 40 || nx == 25)) return;             // 무효판 처리
-                if (pieces[idx].vex  == pieces[j].vex && pieces[idx].preVex == pieces[j].preVex && pieces[idx].isBlue == pieces[j].isBlue) {
+                if (pieces[idx].vex == pieces[j].vex && (nx == 40 || nx == 25)) return;             // 무효판 처리
+                if (pieces[idx].vex == pieces[j].vex && pieces[idx].preVex == pieces[j].preVex && pieces[idx].isBlue == pieces[j].isBlue) {            // 38퍼에서 틀린 이유 : 22
                     return;
                 }
             }
-
 
 
         }
