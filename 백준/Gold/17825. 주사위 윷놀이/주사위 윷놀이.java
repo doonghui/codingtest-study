@@ -159,7 +159,7 @@ public class Main {
                 }
             }
 
-            if (pieces[idx].isFinish) {            // 종료조건
+            if (nx == 42) {            // 종료조건
                 continue;
             }
 
