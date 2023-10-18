@@ -13,8 +13,7 @@ class Nodeinfo implements Comparable<Nodeinfo> {
 
     @Override
     public int compareTo(Nodeinfo no) {
-        if (no.y == this.y) return this.x - no.x;
-        else
+     
             return no.y - this.y;
     }
 
