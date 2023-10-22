@@ -30,8 +30,8 @@ class Main {
         for (int i = 0; i < n; i++) {
             city[i] = Integer.parseInt(st.nextToken());
         }
-        int minGas = city[0];
-        long min = (long) minGas * roads[0];
+        long minGas = city[0];
+        long min =  minGas * roads[0];
         for(int j =1; j<n-1;j++) {
             if(city[j] < minGas) minGas = city[j];
 
