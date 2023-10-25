@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 class Main {
 
-    static int n,m;
+    static int n, m;
     static int max = Integer.MIN_VALUE;
 
 
@@ -19,9 +19,9 @@ class Main {
         n = Integer.parseInt(br.readLine());
         int[] arr = new int[n];
 
-        st = new StringTokenizer(br.readLine()," ");
+        st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < n; i++) {
-           arr[i] = Integer.parseInt(st.nextToken());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
 
@@ -30,7 +30,6 @@ class Main {
         Arrays.sort(arr);
 
         binarySearch(arr);
-
 
 
         bw.write(max + "");
@@ -44,32 +43,27 @@ class Main {
 
     static void binarySearch(int[] arr) {
         int lt = 1;
-        int rt = arr[arr.length-1];
-        int mid =0;
-        int sum = 0;
+        int rt = arr[arr.length - 1];
 
-        while(lt<=rt) {
-            sum = 0;
-            mid = (lt+rt) /2;
-            for(int i =0; i<arr.length;i++) {
-                if(arr[i] <= mid) sum += arr[i];
+        while (lt <= rt) {
+            int sum = 0;
+            int mid = (lt + rt) / 2;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] <= mid) sum += arr[i];
                 else
-                     sum += mid;
+                    sum += mid;
             }
 
-            if(sum > m) {
-                rt = mid-1;
-            } else if(sum <m) {
-                lt = mid+1;
-                max = Math.max(max,mid);
-            } else  {
+            if (sum > m) {
+                rt = mid - 1;
+            } else if (sum < m) {
+                lt = mid + 1;
+                max = Math.max(max, mid);
+            } else {
                 max = mid;
                 return;
             }
         }
-
-        if(sum > m) max = mid -1;
-
 
 
     }
