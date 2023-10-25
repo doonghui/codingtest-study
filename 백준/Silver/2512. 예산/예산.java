@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 class Main {
 
     static int n,m;
-    static int[] arr;
+    static int max = Integer.MIN_VALUE;
 
 
     public static void main(String[] args) throws Exception {
@@ -17,72 +17,62 @@ class Main {
         StringTokenizer st = null;
 
         n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
 
-        arr = new int[n];
-        int sum = 0;
-        st = new StringTokenizer(br.readLine(), " ");
+        st = new StringTokenizer(br.readLine()," ");
         for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-            sum += arr[i];
+           arr[i] = Integer.parseInt(st.nextToken());
         }
-        m =Integer.parseInt(br.readLine());
+
+
+        m = Integer.parseInt(br.readLine());
 
         Arrays.sort(arr);
 
+        binarySearch(arr);
 
-        if(sum <=m) bw.write(arr[arr.length-1]+"");
-        else {
-            bw.write(binarySearch()+"");
-        }
 
-        bw.flush();
+
+        bw.write(max + "");
+
+
         br.close();
+        bw.flush();
         bw.close();
 
     }
 
-
-    static int binarySearch() {
-        int lt = 0;
+    static void binarySearch(int[] arr) {
+        int lt = 1;
         int rt = arr[arr.length-1];
-        int mid = 0;
+        int mid =0;
         int sum = 0;
 
-        while(lt <= rt) {
-            mid = (lt + rt) / 2;
-            sum = findMax(mid);
+        while(lt<=rt) {
+            sum = 0;
+            mid = (lt+rt) /2;
+            for(int i =0; i<arr.length;i++) {
+                if(arr[i] <= mid) sum += arr[i];
+                else
+                     sum += mid;
+            }
 
-             if(sum > m) {
-                 rt = mid -1;
-             } else if (sum < m) {
-                 lt = mid +1;
-             } else {
-                 return mid;
-             }
-
-        }
-        if(sum > m ) return mid-1;
-     
-        return mid;
-
-    }
-
-    static int findMax(int mid) {
-        int tmp = 0;
-        for(int i =0; i<n;i++) {
-            if(arr[i] <mid) tmp += arr[i];
-            else {
-                tmp += mid;
+            if(sum > m) {
+                rt = mid-1;
+            } else if(sum <m) {
+                lt = mid+1;
+                max = Math.max(max,mid);
+            } else  {
+                max = mid;
+                return;
             }
         }
 
-        return tmp;
+        if(sum > m) max = mid -1;
+
+
 
     }
 
 
 }
-
-
-
-
