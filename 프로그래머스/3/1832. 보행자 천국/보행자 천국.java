@@ -31,15 +31,15 @@ class Solution {
         }
 
         // 1. 전 위치가 모든 0 일때
-        // 2. 전위치중 하나라도 2일때
+        // 2. 전 위치중 하나라도 2일때
         for (int x = 1; x < m; x++) {
             for (int y = 1; y < n; y++) {
-                if(cityMap[x][y-1] != 1) {
+                if(cityMap[x][y-1] != 1) {          // 위쪽
                     if(cityMap[x][y-1] == 0)  dp[x][y][1] = (dp[x][y-1][0] + dp[x][y-1][1]) % MOD;
                     else
                         dp[x][y][1] = dp[x][y-1][1] % MOD;
                 }
-                if(cityMap[x-1][y] != 1) {
+                if(cityMap[x-1][y] != 1) {          // 왼쪽
                     if(cityMap[x-1][y] == 0)  dp[x][y][0] = (dp[x-1][y][0] + dp[x-1][y][1]) % MOD;
                     else dp[x][y][0] = dp[x-1][y][0] % MOD;
                 }
