@@ -31,11 +31,10 @@ class Main {
             for (int j = 0; j < m; j++) map[i][j] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                solution(i, j, 0,map[i][j],-1);
+                solution(0, j, 0,map[0][j],-1);
             }
-        }
+      
 
         br.close();
         bw.write(min+"");
