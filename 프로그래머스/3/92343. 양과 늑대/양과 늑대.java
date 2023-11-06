@@ -27,6 +27,11 @@ class Solution {
     
     static void dfs(int[] info,int idx,int sheep,int wolf,ArrayList<Integer> nodes) {
         
+            
+        if(info[idx] == 1 && gragh.get(idx) == null) {          // 울프인데 자손없으면 더 확인하고 밑에 코드까지 갈 필요없으니깐 return;
+            nodes.remove(Integer.valueOf(idx));   
+            return;
+        }
         
           if(info[idx] == 0) sheep++;
                 else {
@@ -38,11 +43,7 @@ class Solution {
         }
         
         max = Math.max(max,sheep);
-        
-        if(info[idx] == 1 && gragh.get(idx) == null) {
-            nodes.remove(Integer.valueOf(idx));   
-            return;
-        }
+    
         
         
         ArrayList<Integer> nextNodes = new ArrayList<>();
