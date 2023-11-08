@@ -72,7 +72,7 @@ class Main {
             }
         }
 
-
+        if (lt >= arr.size()) lt = arr.size() - 1;
         return lt;
 
 
