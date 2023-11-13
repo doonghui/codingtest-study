@@ -10,7 +10,7 @@ class Solution {
         
         int distance = Math.abs(x - r) + Math.abs(y - c);
 
-        if(distance > k || (k - distance) % 2 == 1) return "impossible";
+        if(distance > k || (k - distance) % 2 == 1) return "impossible";        // 거리가 k 보다 크거나 중복방문시 홀수면 x
         
         arr = new char[k];
         dfs(0,n,m,x,y,r,c,k);
@@ -29,10 +29,11 @@ class Solution {
         
         if(dept == k && x == r && y == c) {
             String tmp = new String(arr);
-            if(ans.equals("")) ans = tmp;
-            else {
-                if(tmp.compareTo(ans) <=0) ans = tmp;
-            }
+            // if(ans.equals("")) ans = tmp;
+            // else {
+            //     if(tmp.compareTo(ans) <=0) ans = tmp;
+            // }
+            ans = tmp;
             
             return;
         }
