@@ -19,7 +19,7 @@ class Solution {
         }
 
 
-        for (int i = 0; i < weak.length; i++) {              // 취약지점 선택
+        for (int i = 1; i < weak.length; i++) {              // 취약지점 선택
             select(i, 0, dist, visited,visitArr);
         }
         
