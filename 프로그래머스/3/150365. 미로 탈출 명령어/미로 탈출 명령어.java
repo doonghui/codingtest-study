@@ -50,7 +50,7 @@ class Solution {
             else if(dy[i] == 1) tmpChar = 'r';
             else if(dx[i] == -1) tmpChar = 'u';
             if(!ans.equals("")) {
-                if(tmpChar < arr[dept]) return;
+                if(tmpChar >= arr[dept]) return;
                 else
                     arr[dept] = tmpChar;
                 
