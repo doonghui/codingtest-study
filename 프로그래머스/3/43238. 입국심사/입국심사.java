@@ -5,7 +5,9 @@ class Solution {
         
         Arrays.sort(times);
         
-       answer = binarySearch(n,times,times[0],(long)n *times[times.length-1]);
+        long m = (long)n;
+        
+       answer = binarySearch(n,times,times[0],m *times[times.length-1]);
         
         return answer;
     }
