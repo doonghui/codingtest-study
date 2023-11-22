@@ -64,8 +64,6 @@ class Main {
                 rt = mid - 1;
             } else if (child < n) {
                 lt = mid + 1;
-            } else if (child == n) {
-                return mid;
             }
 
 
