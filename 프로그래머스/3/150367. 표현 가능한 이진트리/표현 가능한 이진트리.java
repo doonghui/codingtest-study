@@ -44,9 +44,12 @@ class Solution {
     
     static void check(int lt,int rt,int[] binary) {
         if(flag) return;
-        
+        if(binary.length == 1) {
+            if(binary[0] == 0) flag = true;
+        }
+        if(lt == rt) return;
         int mid = (lt + rt) / 2;
-        int left =(lt + mid) /2;
+        int left =(lt + mid-1) /2;
         int right =(mid+1 + rt) /2;
        
             if(binary[mid] ==0) {       // 부모 노드가 없는데 자식이 있으면 안됨!
@@ -55,8 +58,6 @@ class Solution {
                 return; 
                 }
              }
-        
-        if(lt == rt) return;
             
         check(lt,mid-1,binary);
         check(mid+1,rt,binary);
