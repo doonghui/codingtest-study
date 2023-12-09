@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.*;
 
-class Edge implements Comparable<Edge>{
+class Edge implements Comparable<Edge> {
     int vex;
     int w;
 
@@ -12,6 +12,7 @@ class Edge implements Comparable<Edge>{
         this.vex = vex;
         this.w = w;
     }
+
     public int compareTo(Edge edge) {
         return this.w - edge.w;
     }
@@ -24,30 +25,27 @@ class Solution {
     static boolean[] checkGates;
     static boolean[] checkSummits;
 
-
     public  int[] solution(int n, int[][] paths, int[] gates, int[] summits) {
         int[] answer = new int[2];
 
         arr = new ArrayList<>();
-        dis = new int[n+1];
-        Arrays.fill(dis,Integer.MAX_VALUE);
+        dis = new int[n + 1];
+        Arrays.fill(dis, Integer.MAX_VALUE);
 
         for (int i = 0; i <= n; i++) {
             arr.add(new ArrayList<>());
         }
 
 
-
-        checkGates = new boolean[n+1];
+        checkGates = new boolean[n + 1];
         for (Integer gate : gates) {
             checkGates[gate] = true;
         }
 
-        checkSummits = new boolean[n+1];
+        checkSummits = new boolean[n + 1];
         for (Integer summit : summits) {
             checkSummits[summit] = true;
         }
-
 
 
         for (int j = 0; j < paths.length; j++) {
@@ -61,12 +59,12 @@ class Solution {
         // 출입구에서 ~ 봉우리까지만 가면 됨.
         // 다른 출입구를 방문하면 안됨.
         for (Integer gate : gates) {
-                bfs(gate, summits);
+            bfs(gate);
         }
         Arrays.sort(summits);
         intensity = new Edge(summits[0], dis[summits[0]]);
-        for(int j = 1; j<summits.length;j++) {
-            if(dis[summits[j]] < intensity.w) {
+        for (int j = 1; j < summits.length; j++) {
+            if (dis[summits[j]] < intensity.w) {
                 intensity.vex = summits[j];
                 intensity.w = dis[summits[j]];
             }
@@ -80,16 +78,16 @@ class Solution {
         return answer;
     }
 
-    static void bfs(int gate, int[] summits) {     // flag = 산봉우리 확인
+    static void bfs(int gate) {     // flag = 산봉우리 확인
         PriorityQueue<Edge> pQ = new PriorityQueue<>();
         pQ.offer(new Edge(gate, 0));
         dis[gate] = 0;
         while (!pQ.isEmpty()) {
             Edge now = pQ.poll();
 
-            if(checkSummits[now.vex]) continue;                 // 이미 산봉우리에 도달했을 때
+            if (checkSummits[now.vex]) continue;                 // 이미 산봉우리에 도달했을 때
 
-            if (dis[now.vex] < now.w) continue;                 
+            if (dis[now.vex] < now.w) continue;
             for (Edge next : arr.get(now.vex)) {
                 if (checkGates[next.vex]) continue;            // 출입구로 또 방문할 경우
 
@@ -102,7 +100,6 @@ class Solution {
 
             }
         }
-
 
 
     }
