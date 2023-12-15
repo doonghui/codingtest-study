@@ -1,25 +1,5 @@
-import java.awt.*;
 import java.io.*;
-import java.util.*;
-
-
-class Point implements Comparable<Point> {
-    int idx;
-    int value;
-
-    public Point(int idx, int value) {
-        this.idx = idx;
-        this.value = value;
-    }
-
-    @Override
-    public int compareTo(Point po) {
-        return po.value - this.value;
-    }
-
-
-}
-
+import java.util.StringTokenizer;
 
 class Main {
 
@@ -35,7 +15,7 @@ class Main {
 
         T = Integer.parseInt(br.readLine());
 
-        
+
         long[] answer = new long[T];
         for (int i = 0; i < T; i++) {
             N = Integer.parseInt(br.readLine());
