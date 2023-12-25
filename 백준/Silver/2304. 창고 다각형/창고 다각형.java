@@ -5,17 +5,17 @@ import java.util.StringTokenizer;
 
 
 class Pillar implements Comparable<Pillar> {
-    int l;
-    int h;
+    int x;
+    int y;
 
-    public Pillar(int l, int h) {
-        this.l = l;
-        this.h = h;
+    public Pillar(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public int compareTo(Pillar pi) {
-        return this.l - pi.l;
+        return this.x - pi.x;
     }
 
 }
@@ -45,8 +45,8 @@ class Main {
         }
         Collections.sort(pillars);
         for (int j = 0; j < pillars.size(); j++) {
-            if (pillars.get(j).h > maxH) {
-                maxH = pillars.get(j).h;
+            if (pillars.get(j).y > maxH) {
+                maxH = pillars.get(j).y;
                 maxLIdx = j;
             }
         }
@@ -64,28 +64,28 @@ class Main {
 
     public static long area(int maxH, int maxLIdx) {
         long ans = maxH;
-        int x = pillars.get(0).l;
-        int y = pillars.get(0).h;
+        int x = pillars.get(0).x;
+        int y = pillars.get(0).y;
         for (int i = 1; i <= maxLIdx; i++) {
-            if (y < pillars.get(i).h) {
-                ans += (long) (pillars.get(i).l - x) * y;
-                x = pillars.get(i).l;
-                y = pillars.get(i).h;
+            if (y < pillars.get(i).y) {
+                ans += (pillars.get(i).x - x) * y;
+                x = pillars.get(i).x;
+                y = pillars.get(i).y;
             }
-            if(i == maxLIdx && y == pillars.get(i).h) {
-                ans += (long) (pillars.get(i).l - x) * y;
+            if (i == maxLIdx && y == pillars.get(i).y) {
+                ans += (long) (pillars.get(i).x - x) * y;
             }
         }
-        y = pillars.get(pillars.size() - 1).h;
-        x = pillars.get(pillars.size() - 1).l;
+        x = pillars.get(pillars.size() - 1).x;
+        y = pillars.get(pillars.size() - 1).y;
         for (int j = pillars.size() - 2; j >= maxLIdx; j--) {
-            if (y < pillars.get(j).h) {
-                ans += (long) (x - (pillars.get(j).l)) * y;
-                x = pillars.get(j).l;
-                y = pillars.get(j).h;
+            if (y < pillars.get(j).y) {
+                ans +=  (x - (pillars.get(j).x)) * y;
+                x = pillars.get(j).x;
+                y = pillars.get(j).y;
             }
-            if(j == maxLIdx && y == pillars.get(j).h) {
-                ans += (long) (x-pillars.get(j).l) * y;
+            if (j == maxLIdx && y == pillars.get(j).y) {
+                ans += (long) (x - pillars.get(j).x) * y;
             }
         }
         return ans;
