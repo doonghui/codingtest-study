@@ -51,7 +51,7 @@ class Solution {
             long startTime = times.get(i).start;
             long endTime = times.get(i).end + 999;
             for(int j = i+1;j<times.size();j++){
-                if(startTime <=  times.get(j).end && endTime >=times.get(j).start) {
+                if( endTime >=times.get(j).start) {
                     count++;
                 }
             }
