@@ -9,8 +9,6 @@ class Solution {
         int[] oddArr = sequence.clone();
         
         for(int i = 0; i<sequence.length;i++) {
-            
-            
             if(i % 2 == 0) evenArr[i] = sequence[i] * -1;
             else
                oddArr[i] = sequence[i] * -1;
