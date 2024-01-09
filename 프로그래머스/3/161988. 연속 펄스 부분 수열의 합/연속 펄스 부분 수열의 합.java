@@ -28,37 +28,17 @@ class Solution {
     
     
     static long sol(int[] arr) {
-        int lt =0;
-        int rt =0;
-        long max = arr[lt];
-        long sum = arr[lt];
-        
-        while(rt < arr.length-1) {
-            rt++;
+        long max = arr[0];
+        long sum = arr[0];
+        for(int i = 1; i<arr.length;i++) {
             if(sum < 0) {
-                lt = rt;
-                sum = arr[rt];
+                sum = arr[i];
             } else {
-                sum += arr[rt];
-            }            
-            max = Math.max(max,sum);  
-        }
-        
-        while(lt < rt) {
-            sum -= arr[lt];
-            lt++;
+                sum += arr[i];
+            }   
             max = Math.max(max,sum);
         }
-        
-//         for(int i = 1; i<arr.length;i++) {
-//             if(arr[i] >=0 && arr[i-1] >= 0) sum += arr[i];
-//             else if(arr[i] >= 0 && arr[i-1] <0) sum = arr[i];
-//             else if(arr[i] < 0 && arr[i-1] <0) sum = Math.max(sum,arr[i]);
-//             max = Math.max(max,sum);
-//         }
 
-
-        
         return max;
     }    
 
