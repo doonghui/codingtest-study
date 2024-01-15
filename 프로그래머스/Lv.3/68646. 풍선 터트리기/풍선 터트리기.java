@@ -22,8 +22,6 @@ class Solution {
                 if(a[rt] < rtMin) answer++;
                 
             rtMin = Math.min(a[rt],rtMin);
-                
-                
             }
             
             
