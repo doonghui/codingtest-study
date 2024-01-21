@@ -33,20 +33,30 @@ class Main {
     }
 
     static int sol(int num) {
-        int count = 0;
+        int count1 = 0;
         boolean check = false;
         for(int i = N-1;i>=0;i--) {
             if(arr[i] == num) {
               if(check) {
-                count++;
+                count1++;
               }
             } else {
                 if(!check) check = true;
             }
         }
+        int count2 = 0;
+        check = false;
+        for(int j = 0;j<N;j++) {
+            if(arr[j] == num) {
+                if(check) {
+                    count2++;
+                }
+            } else {
+                if(!check) check = true;
+            }
+        }
 
-
-        return count;
+        return Math.min(count1,count2);
     }
 
 
