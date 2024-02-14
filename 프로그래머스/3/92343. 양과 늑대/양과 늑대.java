@@ -13,7 +13,8 @@ class Solution {
         for(int j =0;j<edges.length;j++) {
             int a = edges[j][0];
             int b = edges[j][1];
-            gragh.get(a).add(b);
+            gragh.get(a).add(b);            
+
         }
         ArrayList<Integer> nodes = new ArrayList<>();
         
@@ -45,7 +46,7 @@ class Solution {
         max = Math.max(max,sheep);
     
         
-        
+        // 이미 방문한 위치를 또 방문하기 위해서 idx 저장
         ArrayList<Integer> nextNodes = new ArrayList<>();
         nextNodes.addAll(nodes);
 
