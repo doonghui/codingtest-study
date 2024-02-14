@@ -21,7 +21,6 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         arr = new int[N];
         Stack<int[]> stack = new Stack<>();
-        Stack<Integer> ans = new Stack<>();
         st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
