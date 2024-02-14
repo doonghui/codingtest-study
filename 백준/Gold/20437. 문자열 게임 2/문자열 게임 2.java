@@ -24,16 +24,16 @@ public class Main {
             W = br.readLine();
             K = Integer.parseInt(br.readLine());
 
+            // 틀린이유
             if(K == 1) {
                 bw.write("1 1\n");
                 continue;
             }
             for (int j = 0; j < W.length(); j++) {
                 char c = W.charAt(j);
-
                 map.put(c, map.getOrDefault(c, 0) + 1);
             }
-
+            
             sol(map);
             if (min == Integer.MAX_VALUE || max == Integer.MIN_VALUE) bw.write("-1\n");
             else
