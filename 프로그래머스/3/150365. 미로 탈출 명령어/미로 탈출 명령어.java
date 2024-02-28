@@ -25,7 +25,7 @@ class Solution {
     }
 
     static void sol(int dept, int n, int m, int x, int y, int r, int c, int k) {
-        if (k < dept + Math.abs(x - r) + Math.abs(y - c)) return;                 // 시간초과나 런타임 이유
+        if (k < dept + Math.abs(x - r) + Math.abs(y - c)) return;                 // 이동했을 때 거리가 멀어지는 경우 ,시간초과나 런타임 이유
 
         if (dept == k && x == r && y == c) {
             flag = true;
