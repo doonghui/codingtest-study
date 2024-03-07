@@ -3,7 +3,7 @@ import java.util.*;
 // 5, 9~ 17 빼고 나머지 시간초과.. 어케 줄일까
 class Solution {
     public String[] solution(String[] s) {
-      String[] answer = new String[s.length];
+           String[] answer = new String[s.length];
         ArrayList<String> arr = new ArrayList<>();
 
         // s에서 110을 다 제외해준다.
@@ -18,10 +18,10 @@ class Solution {
             StringBuilder sbA = new StringBuilder();
 
             for (int i = 0; i < str.length(); i++) {
-                if(str.charAt(i) == '0') {
+                if (str.charAt(i) == '0') {
                     int len = sb.length();
-                    if(len >= 2 && sb.charAt(len-2) == '1' && sb.charAt(len-1) == '1') {
-                        sb.delete(len-2,len);
+                    if (len >= 2 && sb.charAt(len - 2) == '1' && sb.charAt(len - 1) == '1') {
+                        sb.delete(len - 2, len);
                         sbA.append("110");
                     } else
                         sb.append(str.charAt(i));
@@ -32,36 +32,18 @@ class Solution {
             }
 
 
-//            while (true) {
-//                if (sb.length() <= 3 || idx > sb.length() - 3) break;
-//                String st = sb.substring(idx, idx + 3);
-//                if (st.equals("110")) {
-//                    sb.delete(idx, idx + 3);
-//                    sbA.append("110");
-//                    idx = 0;
-//                } else
-//                    idx++;
-//            }
-//            boolean flag = false;
-
-            if (sb.indexOf("0") == -1) {
-                sb.insert(0, sbA.toString());
-            } else {
-                sb.insert(sb.lastIndexOf("0") + 1, sbA.toString());
+            boolean flag = false;
+            for (int i = sb.length() - 1; i >= 0; i--) {
+                if (sb.charAt(i) == '0') {
+                    flag = true;
+                    sb.insert(i + 1, sbA.toString());
+                    break;
+                }
             }
 
-
-//            for (int i = sb.length() - 1; i >= 0; i--) {
-//                if (sb.charAt(i) == '0') {
-//                    flag = true;
-//                    sb.insert(i + 1, sbA.toString());
-//                    break;
-//                }
-//            }
-//
-//            if (!flag) {
-//                sb.insert(0, sbA.toString());
-//            }
+            if (!flag) {
+                sb.insert(0, sbA.toString());
+            }
 
             arr.add(sb.toString());
         }
