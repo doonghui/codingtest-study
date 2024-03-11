@@ -55,17 +55,11 @@ public class Main {
             if (stack.size() == 0 || gragh.get(j).y > stack.peek().y) stack.add(gragh.get(j));
         }
 
-        int h = 0;
         if (stack.size() == 1) {
             if (stack.peek().y != 0) count++;
         } else if (stack.size() > 1) {
-            h = stack.pop().y;
-            count++;
-            while (!stack.isEmpty()) {
-                if (stack.peek().y < h && stack.peek().y != 0) {
-                    count++;
-                }
-                stack.pop();
+            while (!stack.isEmpty() && stack.pop().y > 0) {
+                count++;
 
             }
         }
