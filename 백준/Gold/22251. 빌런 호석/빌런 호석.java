@@ -2,25 +2,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.*;
-
-
-class Network implements Comparable<Network> {
-    int v1;
-    int v2;
-    int cost;
-
-    public Network(int v1, int v2, int cost) {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.cost = cost;
-    }
-
-    public int compareTo(Network o) {
-        return this.cost - o.cost;
-    }
-
-}
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -65,38 +47,29 @@ public class Main {
             }
         }
 
-
         // str 을 P 번 반전시켜서 ans 가 나오는지 확인
-        for (int i = 1; i <= N; i++) {      // 1층 ~ N층
-            String ans = i + "";
+        for (int i = 1; i <= N; i++) {
+            String ans = i + "";         // 1층 ~ N층
             while (ans.length() < K) {
                 ans = "0" + ans;
             }
 
-
-            String tmp = str;
-            if (check(tmp, ans)) {
+            if (check(str, ans)) {
                 cnt++;
             }
-//            for (int j = 1; j <= P; j++) {      // 1 ~  P번
-//
-//            }
-
         }
 
-        bw.write(cnt-1 + "");       // 나 자신 빼주기
+        bw.write(cnt - 1 + "");       // 나 자신 빼주기
         br.close();
         bw.flush();
         bw.close();
     }
 
-    static boolean check(String str, String ans) {
+    static boolean check(String before, String after) {
         int count = 0;
-        for (int i = 0; i < str.length(); i++) {
-            int[] before = arr[str.charAt(i) - '0'];
-            int[] after = arr[ans.charAt(i) - '0'];
+        for (int i = 0; i < before.length(); i++) {        // 자릿수
             for (int j = 0; j < 7; j++) {
-                if (before[j] != after[j]) count++;
+                if (arr[before.charAt(i) - '0'][j] != arr[after.charAt(i) - '0'][j]) count++;
             }
         }
 
