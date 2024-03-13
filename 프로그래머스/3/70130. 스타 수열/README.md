@@ -1,10 +1,10 @@
 # [level 3] 스타 수열 - 70130 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/70130#) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/70130) 
 
 ### 성능 요약
 
-메모리: 73.9 MB, 시간: 0.58 ms
+메모리: 77.7 MB, 시간: 0.03 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 13일 18:11:18
+2024년 03월 13일 18:13:11
 
 ### 문제 설명
 
