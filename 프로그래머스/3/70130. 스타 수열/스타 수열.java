@@ -17,28 +17,36 @@ class Point implements Comparable<Point> {
 
 // 42.9 -> 46.4
 class Solution {
-      public int solution(int[] a) {
-        int answer = 0;
-        //a의 모든 부분 수열 중에서 가장 길이가 긴 스타 수열의 길이를 return
-        int[] cnt = new int[a.length];
-        for(int i=0; i<a.length; i++){
-            cnt[a[i]]++;
-        }
+    public int solution(int[] a) {
+        int answer = -1;
         
-        for(int i=0; i<cnt.length; i++){
-            if(cnt[i] <= answer) continue; //이미 등장한 숫자보다 더 빈도가 적거나 같은 경우
+        ArrayList<Point> arr = new ArrayList<>();
+        for(int i =0;i<a.length;i++) arr.add(new Point(i,0));
+        
+        if(a.length <2) answer = 0;
+        else {
+         for(int i = 0;i<a.length;i++) {
+             arr.get(a[i]).value += 1;
+         }
+        
+        Collections.sort(arr);
+
             
-            int ans = 0;
-            for(int j=0; j<a.length-1; j++){
-                if(a[j]!=a[j+1] && (i==a[j] || i==a[j+1])){
-                    ans++;
+        for(Point p : arr) {
+            if(p.value <= answer) continue;           // 테스트13 부터 시간초과인 이유
+            int cnt = 0;
+            for(int j =0;j<a.length-1;j++) {
+                if(a[j] != a[j+1] && (a[j] == p.key || a[j+1] == p.key)) {
+                    cnt++;
                     j++;
                 }
+ 
             }
             
-            answer = Math.max(answer, ans);
+            answer = Math.max(answer,cnt);
+        }
         }
         
-        return answer*2;
+        return answer *= 2;
     }
 }
