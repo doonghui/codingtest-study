@@ -33,7 +33,7 @@ class Solution {
 
             
         for(Point p : arr) {
-            if(p.value <= answer) continue;           // 테스트13 부터 시간초과인 이유
+            if(p.value <= answer) break;
             int cnt = 0;
             for(int j =0;j<a.length-1;j++) {
                 if(a[j] != a[j+1] && (a[j] == p.key || a[j+1] == p.key)) {
