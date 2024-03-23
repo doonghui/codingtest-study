@@ -4,38 +4,31 @@ class Solution {
     static int ans;
     
 public  int solution(int[] numbers, int target) {
-        int answer = 0;
+              int answer = 0;
 
         check = new boolean[numbers.length];
         ans = 0;
 
-        dfs(numbers,target,0);
+        dfs(numbers,0,0,target);
 
         return ans;
     }
 
-    static void dfs(int[] numbers,int target,int idx) {
-        int num = 0;
+    static void dfs(int[] numbers,int idx,int sum,int target) {
 
-        for(int j =0;j<numbers.length;j++) {
-            if(check[j]) num += numbers[j];
-            else
-                num -= numbers[j];
-        }
+        // 탈출조건
+        if(idx == numbers.length) {
+            if(sum == target) ans +=1;
 
-        if(num == target) {
-            ans +=1;
+            return;
         }
 
 
+        // 수행조건
 
-        for(int i =idx;i<numbers.length;i++) {
-            if(check[i]) return;
-            check[i] = true;
-            dfs(numbers,target,idx+1);
-            check[i] = false;
 
-        }
+        dfs(numbers,idx+1,sum + numbers[idx],target);
+        dfs(numbers,idx+1,sum - numbers[idx],target);
 
     }
 }
