@@ -9,7 +9,7 @@ import java.util.*;
 public class Main {
 
     static int N, M;
-    static long ans;
+    static BigInteger ans;
 
 
     public static void main(String[] args) throws Exception {
@@ -41,7 +41,7 @@ public class Main {
             }
         }
 
-//        ans = 0;
+//        ans = new BigInteger("0");
 //        solution(check, 0, 0);      // 시간초과
 //        bw.write(ans + "");
 
@@ -53,7 +53,7 @@ public class Main {
 
 //    static void solution(boolean[] check, int count, int idx) {
 //        if (count == M) {
-//            ans++;
+//            ans = ans.add(BigInteger.valueOf(1));
 //            return;
 //        }
 //
