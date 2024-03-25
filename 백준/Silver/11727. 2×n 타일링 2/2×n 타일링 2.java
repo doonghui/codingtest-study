@@ -13,7 +13,7 @@ public class Main {
         if (n == 1) return dp[n] = 1;
         if (n == 2) return dp[n] = 3;
 
-        return dp[n] =( Sol(n - 1)%10007 + Sol(n - 2) * 2%10007)%10007;
+        return dp[n] =( Sol(n - 1) + Sol(n - 2) * 2)%10007;
     }
 
     public static void main(String[] args) throws Exception {
