@@ -1,42 +1,44 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.math.BigInteger;
 import java.util.*;
 
 
-
 public class Main {
-    static int n;
-    static int[] arr;
-    static int[] dp;
+
+    static int N;
 
 
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = null;
+        StringTokenizer st;
 
-        n = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[N];
+        int[] dp = new int[N];
         st = new StringTokenizer(br.readLine(), " ");
-        arr = new int[n];
-        dp = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
+        for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(st.nextToken());
+
         dp[0] = arr[0];
-        for(int i = 1;i<n;i++) {
-            dp[i] = Math.max(dp[i-1] + arr[i],arr[i]);
+        for (int i = 1; i < N; i++) {
+            dp[i] = arr[i];
+            if (dp[i - 1] > 0) dp[i] += dp[i - 1];
+
         }
 
         Arrays.sort(dp);
 
 
-
+        bw.write(dp[N - 1] + "");
         br.close();
-        bw.write(dp[n-1]+"");
         bw.flush();
         bw.close();
-
-
     }
+
+
 }
 
