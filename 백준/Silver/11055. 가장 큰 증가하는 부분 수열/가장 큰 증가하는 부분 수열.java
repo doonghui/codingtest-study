@@ -1,47 +1,45 @@
-import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.math.BigInteger;
+import java.util.*;
+
 
 public class Main {
 
-
-    static int[] Sol(int n, int[] arr) {
-        int[] dy = new int[n];
-        dy[0] = arr[0];
-
-        for (int lt = 1; lt < n; lt++) {
-            dy[lt] = arr[lt];
-            for (int rt = lt - 1; rt >= 0; rt--) {
-                if (arr[lt] > arr[rt]) {
-                    dy[lt] = Math.max(dy[lt], dy[rt] + arr[lt]);
-                }
-            }
-
-        }
+    static int N;
 
 
-        return dy;
-    }
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = null;
+        StringTokenizer st;
 
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[n];
+        N = Integer.parseInt(br.readLine());
 
+        int[] arr = new int[N];
+        int[] dp = new int[N];
         st = new StringTokenizer(br.readLine(), " ");
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(st.nextToken());
+
+        dp[0] = arr[0];
+        for (int i = 1; i < N; i++) {
+            dp[i] = arr[i];
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[i] > arr[j]) dp[i] = Math.max(dp[i], dp[j] + arr[i]);
+            }
         }
 
+        Arrays.sort(dp);
 
+
+        bw.write(dp[N - 1] + "");
         br.close();
-        bw.write(Arrays.stream(Sol(n, arr)).max().getAsInt() + "");
         bw.flush();
         bw.close();
-
-
     }
+
+
 }
+
