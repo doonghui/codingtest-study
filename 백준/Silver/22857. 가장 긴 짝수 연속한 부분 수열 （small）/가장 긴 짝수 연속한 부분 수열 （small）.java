@@ -30,16 +30,11 @@ public class Main {
         }
 
 
-        int lt = 0;
         int count = 0;
         int delete = 0;
-        if (arr[lt] % 2 == 0) {
-            count = 1;
-        } else {
-            delete++;
-        }
-        int max = count;
-        int rt = 1;
+        int max = 0;
+        int lt = 0;
+        int rt = 0;
         while (true) {
             if (rt == N) break;
             if (arr[rt] % 2 == 0) {
