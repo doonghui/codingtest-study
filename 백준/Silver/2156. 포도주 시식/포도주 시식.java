@@ -25,24 +25,20 @@ public class Main {
         }
 
         dp[0] = arr[0];
-        if (N == 2) {
+        if (N == 1) bw.write(arr[0] + "");
+        else if (N == 2) bw.write(arr[0] + arr[1] + "");
+        else {
             dp[1] = arr[0] + arr[1];
-        } else if(N == 3) {
-          dp[1] = arr[0] + arr[1];
-          dp[2] = Math.max(arr[0],arr[1]) + arr[2];
-          dp[2] = Math.max(dp[1],dp[2]);
-        } else if(N > 3){
-            dp[1] = arr[0] + arr[1];
-            dp[2] = Math.max(arr[0],arr[1]) + arr[2];
-            dp[2] = Math.max(dp[1],dp[2]);
+            dp[2] = Math.max(arr[0], arr[1]) + arr[2];
+            dp[2] = Math.max(dp[1], dp[2]);
             for (int j = 3; j < N; j++) {
                 dp[j] = Math.max(dp[j - 2], arr[j - 1] + dp[j - 3]) + arr[j];       // 포도주 먹을 때
-                dp[j] = Math.max(dp[j],dp[j-1]);                                    // 포도주 안먹었을 때랑 한번더 비교
+                dp[j] = Math.max(dp[j], dp[j - 1]);                                    // 포도주 안먹었을 때랑 한번더 비교
             }
+            bw.write(dp[N-1]+"");
         }
 
 
-        bw.write(dp[N - 1] + "");
         bw.flush();
         bw.close();
     }
