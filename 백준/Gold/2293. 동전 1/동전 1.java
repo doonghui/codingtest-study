@@ -8,7 +8,7 @@ import java.util.*;
 public class Main {
 
     static int N, K;
-    static int[] dp;
+    static long[] dp;
 
 
     public static void main(String[] args) throws Exception {
@@ -19,22 +19,21 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        dp = new int[10001];
+        dp = new long[10001];
         int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
-        // 1 -> 1: 1
-        // 2 -> 2 :11 2
-        // 3 -> 2 : 111 , 12
-        // 4 -> 3:  1111, 112, 22
-        // 5 -> 4 :11111, 1112, 221, 5
-        // 6 -> 5 : 111111, 11112, 222, 2211, 51
-        dp[0] = 1;
+
+
+        // 83%에서 틀림 뭐지?
+//        Arrays.sort(arr);
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
         for (int j = 0; j < N; j++) {
 
             for (int x = arr[j]; x <= K; x++) {
-                dp[x] += dp[x - arr[j]];
+                dp[x] = Math.min(dp[x], dp[x - arr[j]] + 1);
             }
 
 
@@ -42,7 +41,9 @@ public class Main {
 
 
         br.close();
-        bw.write(dp[K] + "");
+        if (dp[K] == Integer.MAX_VALUE) bw.write("-1");
+        else
+            bw.write(dp[K] + "");
         bw.flush();
         bw.close();
     }
