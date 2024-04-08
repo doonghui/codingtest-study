@@ -8,7 +8,7 @@ import java.util.*;
 public class Main {
 
     static int N, K;
-    static long[] dp;
+    static int[] dp;
 
 
     public static void main(String[] args) throws Exception {
@@ -19,7 +19,7 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        dp = new long[10001];
+        dp = new int[10001];
         int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
