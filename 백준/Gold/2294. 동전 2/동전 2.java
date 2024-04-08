@@ -27,7 +27,7 @@ public class Main {
 
 
         // 83%에서 틀림 뭐지?
-        Arrays.sort(arr);
+//        Arrays.sort(arr);
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         for (int j = 0; j < N; j++) {
