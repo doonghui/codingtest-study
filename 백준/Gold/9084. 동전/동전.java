@@ -1,56 +1,35 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.*;
-
-
 public class Main {
 
-    static int T, N, M;
-    static int[][] dp;
-
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
+        int T;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        T = Integer.parseInt(br.readLine());
         StringTokenizer st;
 
-        T = Integer.parseInt(br.readLine());
+        while(T-- > 0) {
+            int N = Integer.parseInt(br.readLine());
+            int[] coins = new int[N];
 
-        for (int i = 0; i < T; i++) {
-            N = Integer.parseInt(br.readLine());
-            int[] arr = new int[N];
-            int[] dp = new int[10001];
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++) {
-                arr[j] = Integer.parseInt(st.nextToken());
-//                dp[arr[j]] = 1;
+            for(int i=0; i<N; i++) {
+                coins[i] = Integer.parseInt(st.nextToken());
             }
-            int money = Integer.parseInt(br.readLine());
+            int total = Integer.parseInt(br.readLine());
 
-            dp[0] = 1;
+            int[] dp = new int[total+1];
 
-
-            for (int x = 0; x < N; x++) {
-                for (int k = arr[x]; k <= money; k++) {
-                    dp[k] += dp[k - arr[x]];
-
+            for(int coin : coins) {
+                for(int i = coin; i<=total; i++) {
+                    dp[i] = dp[i] + dp[i-coin];
+                    if (i == coin) {
+                        dp[i] += 1;
+                    }
                 }
             }
 
-
-            bw.write(dp[money] + "\n");
-
-
+            System.out.println(dp[total]);
         }
-
-
-        bw.flush();
-        bw.close();
     }
-
-
 }
-
-
