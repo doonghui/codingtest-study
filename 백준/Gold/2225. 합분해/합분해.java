@@ -23,18 +23,12 @@ public class Main {
         dp = new int[N + 1][K + 1];
 
 
-        for (int i = 1; i <= K; i++) {
-            dp[1][i] = i;
-        }
-        for (int j = 1; j <= N; j++) {
-            dp[j][1] = 1;
-        }
-
-
         for (int n = 1; n <= N; n++) {
             for (int k = 1; k <= K; k++) {
-                if (n == 1 || k == 1) continue;
-                dp[n][k] = (dp[n - 1][k] + dp[n][k - 1]) % INF;
+                if (n == 1) dp[n][k] = k;                   // 1을 k개로 만들 땐 k개 가능
+                else if (k == 1) dp[n][k] = 1;              // n을 1개로 만들 땐 1개 가능
+                else
+                    dp[n][k] = (dp[n - 1][k] + dp[n][k - 1]) % INF;
             }
         }
 
