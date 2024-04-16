@@ -7,10 +7,9 @@ import java.util.*;
 
 public class Main {
 
-    static int N, K;
+    static int N;
     static int[] arr;
     static long[][] dp;
-    static int INF = 1_000_000_000;
 
 
     public static void main(String[] args) throws Exception {
@@ -20,7 +19,6 @@ public class Main {
 
         N = Integer.parseInt(br.readLine());
         arr = new int[N - 1];
-        int tmp = 0;
         int answer = 0;
 
         dp = new long[N][21];
