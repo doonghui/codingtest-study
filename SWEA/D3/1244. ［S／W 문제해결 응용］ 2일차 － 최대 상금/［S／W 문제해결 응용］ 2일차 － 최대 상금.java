@@ -81,7 +81,7 @@ class Solution {
 //
 //        }
 
-        for(int i =idx;i<arr.length-1;i++) {
+        for(int i =idx;i<arr.length;i++) {
             for(int j = i+1;j<arr.length;j++) {
                     char tmp = arr[i];
                     arr[i] = arr[j];
