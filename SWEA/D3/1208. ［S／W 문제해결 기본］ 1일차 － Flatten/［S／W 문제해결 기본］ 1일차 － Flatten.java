@@ -20,54 +20,27 @@ class Solution
         	            int height =Integer.MAX_VALUE;
 
             while(N -->0) {
-                int max = Integer.MIN_VALUE;
-                int maxIdx = 0;
-                int min = Integer.MAX_VALUE;
-                int minIdx = 0;
-               for(int j =0;j<100;j++) {
-            		if(max < arr[j]) {
-                    	max = arr[j];
-                        maxIdx = j;
-                    }
-                   if(arr[j] !=0 && min > arr[j]) {
-                   		min = arr[j];
-                       minIdx = j;
-                   }
-            }
 
-                             
-                if(arr[maxIdx] - arr[minIdx] == 0) {
+                Arrays.sort(arr);
+                
+             
+                if(arr[arr.length-1] - arr[0] == 0) {
                 height = 0;
                     break;
-                }  else if(arr[maxIdx] - arr[minIdx] == 1) {
+                }  else if(arr[arr.length-1] - arr[0] == 1) {
                 height = 1;
                     break;
                 }
                 
-                arr[maxIdx] -=1;
-                arr[minIdx] +=1;
+                arr[arr.length-1] -=1;
+                arr[0] +=1;
 
             }
             
-               int max = Integer.MIN_VALUE;
-                int maxIdx = 0;
-                int min = Integer.MAX_VALUE;
-                int minIdx = 0;
-              for(int j =0;j<100;j++) {
-            		if(max < arr[j]) {
-                    	max = arr[j];
-                        maxIdx = j;
-                    }
-                   
-                   if(min > arr[j]) {
-                   		min = arr[j];
-                       minIdx = j;
-                   }
-            }
-                
+
                
-            
-            height = max - min;
+            Arrays.sort(arr);
+            height = arr[arr.length-1] - arr[0];
          
            	
         bw.write("#"+test+" "+height+"\n");
