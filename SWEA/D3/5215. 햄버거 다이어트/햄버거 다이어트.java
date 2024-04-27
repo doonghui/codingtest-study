@@ -45,8 +45,8 @@ class Solution
             Collections.sort(food);
             
             int[] dp = new int[L+1];
-            Arrays.fill(dp,-1);
-            dp[0] = 0;
+    //        Arrays.fill(dp,-1);
+      //      dp[0] = 0;
             
             for(int j = 0;j<N;j++) {
                 int ta = food.get(j).taste;
