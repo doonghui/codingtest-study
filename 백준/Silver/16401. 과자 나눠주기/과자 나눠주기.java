@@ -32,7 +32,7 @@ class Main {
 
 
     static int binary(int[] arr) {
-        if (M == 1) return arr[arr.length - 1];
+   //     if (M == 1) return arr[arr.length - 1];
         int lt = 1;
         int rt = 1000000000;
         int mid = 0;
