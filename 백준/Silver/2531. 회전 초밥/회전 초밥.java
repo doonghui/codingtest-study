@@ -8,9 +8,11 @@ import java.util.StringTokenizer;
 
 class Main {
     static int N, D, K, C;
-
+    static ArrayList<ArrayList<Point>> gragh;
+    static boolean[] infection;
     static int[] sushi;
-
+    static int max;
+    static int count;
 
     public static void main(String[] args) throws Exception {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -29,17 +31,18 @@ class Main {
         for (int i = 0; i < N; i++) sushi[i] = Integer.parseInt(br.readLine());
 
         int count = 0;
-        int max = 0;
         for (int j = 0; j < K; j++) {
             if (dist[sushi[j]] == 0) count++;
             dist[sushi[j]]++;
         }
 
-        max = count;
+        int max = count;
 
 
-        for (int lt = 1; lt <= N; lt++) {
-
+        int rt = K - 1;
+        for (int lt = 1; lt<=N;lt++) {
+            rt++;
+            if (rt == N) rt = 0;
 
             if (max <= count) {
                 if (dist[C] == 0) max = count + 1;
@@ -47,13 +50,34 @@ class Main {
                     max = count;
             }
 
-
             dist[sushi[lt - 1]]--;
             if (dist[sushi[lt - 1]] == 0) count--;
-            if (dist[sushi[(lt + K - 1) % N]] == 0) count++;
-            dist[sushi[(lt + K - 1) % N]]++;
+            if (dist[sushi[rt]] == 0) count++;
+            dist[sushi[rt]]++;
+
+
         }
 
+
+//        while (true) {
+//            lt++;
+//            rt++;
+//            if (lt == N) break;
+//            if (rt == N) rt = 0;
+//
+//            if (max <= count) {
+//                if (dist[C] == 0) max = count + 1;
+//                else
+//                    max = count;
+//            }
+//
+//            dist[sushi[lt - 1]]--;
+//            if (dist[sushi[lt - 1]] == 0) count--;
+//            if (dist[sushi[rt]] == 0) count++;
+//            dist[sushi[rt]]++;
+//
+//
+//        }
 
         bw.write(max + "");
 
