@@ -1,0 +1,16 @@
+SELECT ID
+,FISH_NAME
+,LENGTH
+FROM FISH_INFO as i
+INNER JOIN FISH_NAME_INFO as n
+    on i.FISH_TYPE = n.FISH_TYPE
+INNER JOIN 
+    (
+     SELECT FISH_TYPE
+     ,Max(LENGTH) as mx_len
+     FROM FISH_INFO
+     GROUP BY FISH_TYPE
+    ) as mx
+    On i.FISH_TYPE = mx.FISH_TYPE
+    And i.LENGTH = mx.mx_len
+ORDER BY ID
