@@ -43,7 +43,7 @@ public class Main {
     static int sol(int[][] arr, int n) {
         int[][] newArr = new int[n][n];
         boolean[][] visited = new boolean[n][n];
-        Queue<int[]> q = new LinkedList<>();
+        PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> a[2] - b[2]);
         q.add(new int[]{0, 0, arr[0][0]});
         newArr[0][0] = arr[0][0];
         visited[0][0] = true;
