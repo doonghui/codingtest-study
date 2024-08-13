@@ -1,2 +1,16 @@
-select count(fish.FISH_TYPE) as FISH_COUNT  from FISH_INFO fish left join  FISH_NAME_INFO name on fish.FISH_TYPE = name.FISH_TYPE
-where name.FISH_NAME in ('BASS','SNAPPER')
+WITH FISH AS (
+    SELECT
+     FISH_TYPE
+    FROM
+     FISH_NAME_INFO
+    WHERE
+     FISH_NAME = 'BASS' OR FISH_NAME = 'SNAPPER'
+)
+SELECT
+ COUNT(*) AS FISH_COUNT
+FROM 
+ FISH f
+JOIN
+ FISH_INFO fi
+ON
+ f.fish_type = fi.fish_type
