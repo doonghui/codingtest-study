@@ -1,41 +1,27 @@
 import java.util.*;
 
+
+    // 1234    - 0~3       
+    // 2234    - 4~7             
+    // 3334    - 8~11              
+    // 4444    - 12~14            
+
 class Solution {
-    static long[][] arr;
+    
+    ArrayList<Long> arr;
     public int[] solution(int n, long left, long right) {
-
-        ArrayList<Long> ans = new ArrayList<>();
-
         
-        // 1234
-        // 2334
-        // 3334
-        // 4444
-
-        // int le = (int)left;
-        // int ri = (int)right;
         
-        for(long x = left;x<=right;x++) {
-            ans.add(Math.max(x/n,x%n) +1);
-            // if(x / n <= x % n) {
-            //     ans.add((int)(x %n) +1);
-            // } else
-            //     ans.add((int)(x/n)+1);
+       int[] answer = new int[(int)(right-left)+1];
+        int idx = 0;
+        for(long i = left;i<=right;i++) {
+            answer[idx] = (int)Math.max(i/n,i%n)+1;
+                idx++;
         }
-        
-        int[] answer = new int[ans.size()];
-        for(int l = 0;l<answer.length;l++) {
-            
-            answer[l] = ans.get(l).intValue();
-            
-        }
-
+                
         
         
         return answer;
     }
-    
-
-    
-    
+  
 }
