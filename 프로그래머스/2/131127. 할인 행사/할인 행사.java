@@ -4,32 +4,41 @@ class Solution {
     public int solution(String[] want, int[] number, String[] discount) {
         int answer = 0;
         
-        HashMap<String,Integer> map = new HashMap<>();
+        Map<String,Integer> map = new HashMap<>();
         
-        // 0일차(10개 먼저 map 에 넣기)
-        for(int i =0;i<10;i++) {
+        for(int i =0;i<10;i++) {            // 10 일까지 세일 목록 넣기
             map.put(discount[i],map.getOrDefault(discount[i],0)+1);
         }
-        // 0~ N일차까지 map에 +,- 하고 확인하면서 맞으면 count++ 하기
-        int count = 0;
-        for(int day = 0;day<discount.length;day++) {
-            boolean flag = false;
-            for(int j =0;j<want.length;j++) {
-                if(!map.containsKey(want[j]) || map.get(want[j]) < number[j]) {
-                    flag = true;
+        
+        for(int j = 9;j<discount.length;j++) {
+            boolean flag = true;
+            
+            for(int k =0;k<want.length;k++) {
+                if(map.containsKey(want[k]) && map.get(want[k]) > 0) {      // 열흘안에 있는지 + 열흘안에 있는 수가 0 이상인지 확인
+                    // 있으면 수량보다 많은지 확인
+                    if(map.get(want[k]) < number[k]) {
+                        flag = false;
+                        break;}
+                    
+                } else
+                    {
+                    flag = false;
                     break;
-                } 
+                }
             }
-            if(!flag) count++;
             
-            map.put(discount[day],map.get(discount[day])-1);
-            if(day+10 < discount.length) map.put(discount[day+10],map.getOrDefault(discount[day+10],0)+1);
-        }    
+            if(flag) {
+                answer +=1;
+            }
+            
+            
+            if (j +1 < discount.length)map.put(discount[j+1],map.getOrDefault(discount[j+1],0)+1);     // 다음날꺼 추가
+            if(map.get(discount[j-9]) > 0) map.put(discount[j-9],map.get(discount[j-9])-1);      // 맨 앞의 날 감소
+            
+
+            
+        }
         
-        System.out.print(map);
-        
-            
-            
-        return count;
+        return answer;
     }
 }
