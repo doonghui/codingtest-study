@@ -1,14 +1,14 @@
 # [level 2] [1차] 캐시 - 17680 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17680#) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17680) 
 
 ### 성능 요약
 
-메모리: 73.2 MB, 시간: 3.64 ms
+메모리: 119 MB, 시간: 34.86 ms
 
 ### 구분
 
-코딩테스트 연습 > 2018 KAKAO BLIND RECRUITMENT
+ > 
 
 ### 채점결과
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 16일 20:28:43
+2024년 08월 21일 16:55:30
 
 ### 문제 설명
 

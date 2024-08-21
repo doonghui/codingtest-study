@@ -5,57 +5,34 @@ class Solution {
     public int solution(int cacheSize, String[] cities) {
         int answer = 0;
         
-        // LRU 알고리즘 : 가장 오랫동안 참조되지 않은 페이지를 교체하는 기법
-        
         ArrayList<String> cache = new ArrayList<>();
-        for(int i=0;i<cities.length;i++) cities[i] = cities[i].toLowerCase();
-        
-        if(cacheSize == 0) {
-            return cities.length * 5;
-        }
-        
-        boolean flag;
-        
-        int idx = 0;
-        // 원인 : 처음 캐시에 넣고나서 같은 도시가 또 나타날 때
-        while(true) {
-            if(cache.size() == cacheSize || idx >= cities.length) break;
-            flag = false;
-           for(int n = 0;n<cache.size();n++) {
-               if(cities[idx].equals(cache.get(n))) {
-                   cache.remove(cache.get(n));
-                   answer++;
-                   flag = true;
-                   break;
-               }
-           }
-            if(!flag) {
-                answer += 5;
-            }
-            cache.add(cities[idx]);
-            idx++;
-        }
+       
+        if(cacheSize ==0) return cities.length * 5;
         
         
-        for(int j = idx;j<cities.length;j++) {
-            String city = cities[j];
-            flag = false;
-            for(int k =0;k<cache.size();k++) {
-                if(city.equals(cache.get(k))) {
-                    cache.remove(cache.get(k));
-                    answer++;
-                    flag = true;
-                    break;
-                }
-            }
-            if(!flag) {
+        for(int i =0;i<cities.length;i++) {
+          String s = cities[i].toLowerCase();       // 대소문자 구분 x
+    
+        // 도시가 cache 안에 있는지 판별 
+        if(cache.contains(s)) {                 // 있으면 cache 안에 있는걸 삭제 + 맨 뒤에 다시 넣기 + 시간 += 1
+            cache.remove(s);
+            answer +=1;
+        } else {                                // 없으면 cache 공간이 있으면 그냥 뒤에 추가, 없으면 맨 앞에꺼 버리고 뒤에 추가 + 시간 +=5
+            if(cache.size() == cacheSize) {
                 cache.remove(0);
-                answer += 5;
-            }
-            cache.add(city);
+            } 
+            
+            answer +=5;
+        }
+            
+       cache.add(s);
+
+            
         }
         
         
+        
+     
         
         return answer;
     }
