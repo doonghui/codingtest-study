@@ -6,13 +6,13 @@ class Solution {
         int[] month = new int[]{31,29,31,30,31,30,31,31,30,31,30,31};
         String[] day = new String[]{"THU","FRI","SAT","SUN","MON","TUE","WED"};
         
-        int sum = 1;
+        int sum = 0;
         for(int i =0;i<a-1;i++) {           // a월 1 일까지 총 합
             sum += month[i];
         }
         
         System.out.println(sum);
-        int idx = (sum + b-1) % 7;
+        int idx = (sum + b) % 7;
         System.out.println(idx);
         answer = day[idx];
         
