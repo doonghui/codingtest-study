@@ -1,36 +1,52 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        int[] arr = new int[progresses.length];
-        for(int i =0;i<progresses.length;i++) {
-            int a = (100 - progresses[i]) / speeds[i];
-            int b = (100 - progresses[i]) % speeds[i];
-            if(b == 0) arr[i] = a;
-            else
-                arr[i] = a+1;
+      
+        int[] day = new int[speeds.length];
+        
+        // 각 progresses 마다 며칠만에 작업이 끝나는지 확인
+        for(int i=0;i<progresses.length;i++) {
+            int progress = progresses[i];
+            int speed = speeds[i];
+
+            day[i] = (100-progress) / speed;
+            
+            if((100-progress) % speed != 0) day[i] +=1;
+        
         }
-        int now = arr[0];
+        
+        
+        
+        ArrayList<Integer> arr = new ArrayList<>();
+        
+        // 앞에서 부터 몇 개의 기능이 배포되는지 확인
+        int lt = 0;
+        int rt = 1;
         int count = 1;
-        System.out.println(Arrays.toString(arr)+" ");
-        ArrayList<Integer> ans = new ArrayList<>();
-        for(int j =1; j<arr.length;j++) {
-            if(now < arr[j]) {
-                ans.add(count);
-                now = arr[j];
-                count = 1;
-            }
-            else
-                count++;
+        while(true) {
+       // rt++;
+            
+        if(day[lt] < day[rt]) {
+            arr.add(count);
+            lt = rt;
+            count = 1;
+        } else {
+            count++;
+        }
+            
+        rt++;   
+    
+        if(rt >= day.length) {
+            arr.add(count);
+            break;
+}
+                    
         }
         
-        ans.add(count);
+        int[] answer = new int[arr.size()];
         
-        
-    int[] answer =  new int[ans.size()];
-        int idx =0;
-        for(int in : ans) {
-            answer[idx] = in;
-            idx++;
+         for(int k =0;k<arr.size();k++) {
+                answer[k] = arr.get(k);
         }
         
         return answer;
