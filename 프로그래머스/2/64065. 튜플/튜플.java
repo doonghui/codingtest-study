@@ -2,17 +2,18 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String s) {
-        
+       
         ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
         
-        for(int i =0; i<=100000;i++) arr.add(new ArrayList<>());
+        for(int i =0;i<500;i++) arr.add(new ArrayList<>());         // return 하는 배열의 길이가 1 이상 500 이하인 경우
         
-          int j = 1;
+                String [] strs = s.replaceAll("[{}]", "").trim().split(",");
+
+        Arrays.sort(strs, (a,b)->(a.length()-b.length()));
+        
+        int j = 1;
         int idx = -1;
-        while(true) {
-            if(j == s.length()) break;
-
-
+        while(j < s.length()) {                                     // 배열로 바꾸기
             if(s.charAt(j) != '{' && s.charAt(j) != ',' && s.charAt(j) != '}'){
                 idx++;
                 int start = j;
@@ -33,66 +34,30 @@ class Solution {
             j++;
         }
 
-        
-        // for(int j =1; j<s.length()-1;j++) {
-        //     if(s.charAt(j) == '{') idx++;
-        //     else if(s.charAt(j) != '{' && s.charAt(j) != ',' && s.charAt(j) != '}') {
-        //         arr.get(idx).add(s.charAt(j)-'0');
-        //     } 
-        // }
-        
-        // for(Integer li : arr.get(0)) {
-        //     System.out.print(li.get(0)+" ");
-        // }
-        
-        // for(int k =0; k<=100000;k++) {
-        //     if(arr.get(k).size() == 0) break;
-        //     for(Integer kk : arr.get(k)) {
-        //     System.out.print(kk+" ");
-        //     }
-        // }
-        //             System.out.println("ㅡㅡㅡㅡ");
 
+
+        
+        
+        Collections.sort(arr, (a,b)->(a.size()-b.size()));          // size 오름차순 정렬
+        
+        HashSet<Integer> set = new HashSet<>();
         ArrayList<Integer> ans = new ArrayList<>();
-        int count = 1;
-       int index = 0;
-        while(true) {
-            if(arr.get(index).size() == count) {
-               for(Integer in :arr.get(index)) {
-                   ans.add(in);
-                   // System.out.print(in+" / ");
-               }
-                count++;
-                index = 0;
-            } else
-                index++;
-            if(arr.get(index).size() == 0) break;
-        }
-                           // System.out.println();
 
-        int pos = -1;
-        ArrayList<Integer> real = new ArrayList<>();
-        for(int k =0 ;k<ans.size();k++) {
-            int num = ans.get(k);
-            if(k == 0) real.add(num);
-            else {
-                boolean flag = false;
-                for(int dd = 0; dd<real.size();dd++) {
-                    if(real.get(dd) == num) {
-                        flag = true;
-                        break;}
+        for(ArrayList<Integer> ar : arr) {
+            if(ar.size() == 0) continue;
+            for(Integer in : ar) {
+                if(set.add(in)) {
+                    ans.add(in);
+                    break;
                 }
-                if(!flag) real.add(num);
-              
             }
         }
-        
-                int[] answer = new int[real.size()];
+         
+        int[] answer = new int[ans.size()];
+        for(int l =0;l<ans.size();l++) {
+            answer[l] = ans.get(l);
+        }
 
-        
-        for(int l = 0; l<real.size();l++)answer[l] = real.get(l);
-
-        
         return answer;
     }
 }
