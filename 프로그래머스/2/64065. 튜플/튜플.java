@@ -12,7 +12,11 @@ class Solution {
   //      System.out.println(Arrays.toString(strs));
 
         // Arrays.sort(strs, (a, b) -> (a.length() - b.length()));
-     //   System.out.println(Arrays.toString(strs));
+      
+              String[] as = s.replaceAll("[{]", " ").replaceAll("[}]", " ").trim().split(" , ");
+        Arrays.sort(as, (a, b)->{return a.length() - b.length();});
+      //        System.out.println(Arrays.toString(as));
+
 
         int j = 1;
         int idx = -1;
