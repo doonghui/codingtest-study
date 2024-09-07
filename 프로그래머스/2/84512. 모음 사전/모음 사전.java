@@ -23,7 +23,7 @@ class Solution {
             flag = true;
         }
         
-        if(sb.length() == 5) return;
+                if(sb.length() == 5) return;
 
         
         for(int i =0;i<5;i++) {
