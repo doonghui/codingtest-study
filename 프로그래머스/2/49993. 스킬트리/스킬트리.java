@@ -2,42 +2,52 @@ import java.util.*;
 
 class Solution {
     public int solution(String skill, String[] skill_trees) {
-         int answer = 0;
+        int answer = 0;
+        
+        HashMap<Character,Boolean> map = new HashMap<>();
+        
 
-        HashMap<Character,Integer> map = new HashMap<>();
-
-
-
-
-        for(int j =0;j<skill_trees.length;j++) {
-            for(int i=0;i<skill.length();i++) {
-                map.put(skill.charAt(i),0);
-            }
+        
+        
+        for(String sk : skill_trees) {
+                    for(char c : skill.toCharArray()) {
+            map.put(c,false);
+        }
+            
+            
             boolean flag = false;
-            for(int k =0;k<skill_trees[j].length();k++) {
-                char ch = skill_trees[j].charAt(k);
-                int idx = 0;
+            for(int i =0;i<sk.length();i++) {
+                char ch = sk.charAt(i);
                 if(map.containsKey(ch)) {
+                    int idx = 0;
                     while(skill.charAt(idx) != ch) {
-                        if(map.get(skill.charAt(idx)) == 0) {
+                        if(!map.get(skill.charAt(idx))) {
                             flag = true;
                             break;
-                        } else idx++;
+                        }
+                        idx++;
                     }
-                }
-
+                    
                 if(flag) break;
-                else
-                    if(map.containsKey(ch)) map.put(ch,1);
+                    else
+                        map.put(ch,true);
+                }
+                
             }
-
+            
             if(!flag) answer++;
-
-
+            
         }
-
-
-
+        
+        
+        
+        // 스킬트리안에 c 하나가 스킬에 없음 무시
+        // 있을때 ~ -> 스킬의 순서에 맞는지 확인해봐야함
+        
+        // 
+        
+        
+        
         return answer;
     }
 }
