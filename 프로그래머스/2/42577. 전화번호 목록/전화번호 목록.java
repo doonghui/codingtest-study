@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 class Solution {
 public boolean solution(String[] phone_book) {
-        Arrays.sort(phone_book);        // 사전순 정렬!
+        Arrays.sort(phone_book);        // 사전순 정렬
         
 
     
