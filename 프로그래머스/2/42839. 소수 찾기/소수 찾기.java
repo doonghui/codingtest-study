@@ -8,7 +8,7 @@ class Solution {
 
         char[] c = numbers.toCharArray();
 
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new HashSet<>();     // 같은 수 제거 위해
         visited = new boolean[c.length];
         for (int i = 1; i <= c.length; i++) {
 
@@ -25,7 +25,7 @@ class Solution {
             if (set.contains(num)) return;
             set.add(num);
             if(num == 0 || num == 1) return;
-            for (int i = 2; i * i <= num; i++) {
+            for (int i = 2; i * i <= num; i++) {        // 소수 구하기
                 if (num % i == 0) return;
             }
 
