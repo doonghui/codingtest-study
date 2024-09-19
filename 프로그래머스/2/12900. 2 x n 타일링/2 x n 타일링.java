@@ -12,8 +12,7 @@ class Solution {
         answer = dp[n];            
         }
     
-        
-        
+    
         return answer;
     }
 }
