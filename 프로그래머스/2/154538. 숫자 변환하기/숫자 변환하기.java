@@ -1,42 +1,40 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 class Solution {
     public int solution(int x, int y, int n) {
         int answer = 0;
-        answer = dfs(x, y, n);
-        return answer;
-    }
-    int dfs(int x, int y, int n){
-        boolean []checkXValue = new boolean[y-x + 1];
-        Queue<XValueCost> queue = new LinkedList<>();
-        queue.add(new XValueCost(x, 0));
-        checkXValue[0] = true;
-        while(!queue.isEmpty()){
-            XValueCost xValueCost = queue.poll();
-            if(xValueCost.x == y){
-                return xValueCost.cost;
+        
+        Queue<int[]> q = new LinkedList<>();
+        HashSet<Integer> set= new HashSet<>();
+        PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[]o2) {
+                if(o1[0] == o2[0]) return o1[1] - o2[1];
+                return o1[0] - o2[0];
             }
-            if(xValueCost.x*2 <= y && !checkXValue[xValueCost.x*2 - x]){
-                queue.add(new XValueCost(xValueCost.x*2, xValueCost.cost + 1));
-                checkXValue[xValueCost.x*2 - x] = true;
-            }
-            if(xValueCost.x*3 <= y && !checkXValue[xValueCost.x*3 - x]){
-                queue.add(new XValueCost(xValueCost.x*3, xValueCost.cost + 1));
-                checkXValue[xValueCost.x*3 - x] = true;
-            }
-            if(xValueCost.x + n <= y && !checkXValue[xValueCost.x + n - x]){
-                queue.add(new XValueCost(xValueCost.x + n, xValueCost.cost + 1));
-                checkXValue[xValueCost.x + n - x] = true;
-            }
+            
+        });
+        pq.add(new int[]{x,0});
+        while(!pq.isEmpty()) {
+            int[] num = pq.poll();
+            
+            if(num[0] == y) return num[1];
+            
+            if(num[0] > y) break;
+            
+           if(!set.contains(num[0])) {
+               set.add(num[0]); 
+              if(num[0]+n == y|| num[0]*2 ==y|| num[0]*3==y) return num[1] +1;
+               
+    
+              pq.add(new int[]{num[0]+n,num[1]+1});
+              pq.add(new int[]{num[0]*2,num[1]+1});
+              pq.add(new int[]{num[0]*3,num[1]+1});
+               
+              
+           }
+            
         }
+        
         return -1;
-    }
-    class XValueCost{
-        int x;
-        int cost;
-        XValueCost(int x, int cost){
-            this.x = x;
-            this.cost = cost;
-        }
     }
 }
