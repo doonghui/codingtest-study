@@ -3,7 +3,6 @@ class Solution {
     public int solution(int x, int y, int n) {
         int answer = 0;
         
-        Queue<int[]> q = new LinkedList<>();
         HashSet<Integer> set= new HashSet<>();
         PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
             @Override
@@ -23,7 +22,6 @@ class Solution {
             
            if(!set.contains(num[0])) {
                set.add(num[0]); 
-              if(num[0]+n == y|| num[0]*2 ==y|| num[0]*3==y) return num[1] +1;
                
     
               pq.add(new int[]{num[0]+n,num[1]+1});
