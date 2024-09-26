@@ -1,61 +1,59 @@
 import java.util.*;
-
 class Solution {
     public int solution(int n, int[][] edge) {
-         int answer = 0;
         ArrayList<ArrayList<Integer>> gragh = new ArrayList<>();
-
-        for(int i=0;i<=n;i++) gragh.add(new ArrayList<>());
-
-        // 양방향그래프
-        for(int[] arr : edge) {
-            int a = arr[0];
-            int b = arr[1];
+        
+        for(int i =0;i<=n;i++) gragh.add(new ArrayList<>());
+        
+        for(int j = 0;j<edge.length;j++) {
+            int a = edge[j][0];
+            int b = edge[j][1];
+            
             gragh.get(a).add(b);
             gragh.get(b).add(a);
         }
-
-        Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        int[] dist = new int[n+1];
-        Arrays.fill(dist,Integer.MAX_VALUE);
-        boolean[] visited = new boolean[n+1];
-        dist[1] = 0;
-        visited[1] = true;
-        while(!q.isEmpty()) {
-            int t = q.poll();
-            for(Integer node :gragh.get(t)) {
-                if(!visited[node] && dist[node] > dist[t]+1) {
-                    dist[node] = dist[t] +1;
-                    visited[node] = true;
-                    q.add(node);
-                }
-
-            }
-
-        }
-
+        
+        
+        
+        int[] dist= new int[n+1];
+        solve(gragh,dist);
+                System.out.println(Arrays.toString(dist));
 
         Arrays.sort(dist);
-        int idx = 0;
-        int max = -1;
-        for(int k = n;k>=0;k--) {
-            if(dist[k] != Integer.MAX_VALUE)
-             {
-                idx = k;
-                max = dist[k];
-                break;
-            }
+        int max = dist[n];
+        int answer = 1;
+        for(int k = n-1;k>=0;k--) {
+            if(max != dist[k]) break;
+            answer++;
         }
-
-        for(int k = idx;k>=0;k--) {
-            if(dist[k] == max) answer++;
-            else {
-
-                break;
-            }
-        }
-
+        
+        System.out.println(Arrays.toString(dist));
         return answer;
+    }
+    
+    
+    static void solve( ArrayList<ArrayList<Integer>> gragh,int[] dist) {
+        boolean[] visited = new boolean[dist.length];
+        
+        Queue<int[]> q= new LinkedList<>();
+        
+        q.add(new int[]{1,0});
+        visited[1]= true;
+        int count = 0;
+        
+        while(!q.isEmpty()) {
+            int[] v = q.poll();
+
+            for(int node : gragh.get(v[0])) {
+                
+            if(visited[node]) continue;
+
+                visited[node] = true;
+                dist[node] = v[1] +1;
+                q.add(new int[]{node,v[1]+1});
+            }
+            
+        }
+        
     }
 }
