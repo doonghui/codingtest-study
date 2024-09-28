@@ -1,65 +1,52 @@
 import java.util.*;
 
 class Solution {
-    
     static int[] unf;
-        
-        
-        public int solution(int n, int[][] costs) {
+    public int solution(int n, int[][] costs) {
         int answer = 0;
         
-        ArrayList<Point> gragh = new ArrayList<>(); 
-            unf = new int[n];
-            for(int i =0;i<n;i++) unf[i] = i;
-        
-            for(int[] c : costs) {
-                gragh.add(new Point(c[0],c[1],c[2]));
+       Arrays.sort(costs, new Comparator<int[]>() { 
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[2] - o2[2]; 
             }
-            Collections.sort(gragh);
+        });
+        unf = new int[n];
         
-            for(Point p : gragh) {
-                int fa = find(p.v1);
-                int fb = find(p.v2);
-                if(fa != fb) {
-                    answer += p.cost;
-                    union(p.v1,p.v2);
-                }
+        for(int i =0;i<n;i++) unf[i] = i;
+        
+        for(int[] cost : costs) {
+            int v1 = cost[0];
+            int v2 = cost[1];
+            int c = cost[2];
+            if(find(v1) != find(v2)) {
+                union(v1,v2);
+                answer += c;
+                
+                
             }
+        }
         
         
         return answer;
     }
     
     
-    static void union(int a, int b) {
-        int fa = find(a);
-        int fb = find(b);
-        
-        if(fa > fb) unf[fa] = fb;
-        else 
+    
+    public void union(int a,int b) {
+    int fa = find(a);
+    int fb = find(b);
+    
+    
+    if(fa > fb) unf[fa] = fb;
+        else
             unf[fb] = fa;
-    
+        
     }
     
-    static int find(int v) {
-        if(unf[v] == v) return v;
-        return unf[v] = find(unf[v]);
-    }
-}
-
-class Point implements Comparable<Point> {
-    int v1;
-    int v2;
-    int cost; 
+    public int find(int a) {
+    if(unf[a] == a) return a;
     
-    public Point(int v1, int v2, int cost) {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.cost = cost;
-    }
-    
-    @Override
-    public int compareTo(Point o) {
-        return this.cost -o.cost;
+        return unf[a] = find(unf[a]);
     }
 }
