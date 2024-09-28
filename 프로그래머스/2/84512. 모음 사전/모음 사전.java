@@ -1,44 +1,35 @@
 class Solution {
-    static boolean flag;
-    static int cnt;
-    static char[] w = { 'A', 'E', 'I', 'O', 'U'};
-    
+    static char[] dist = { 'A', 'E', 'I', 'O', 'U'};
+    static boolean flag = false;
+    static int count = 0;
     public int solution(String word) {
         int answer = 0;
         
+        
         StringBuilder sb = new StringBuilder();
         
-        flag= false;
-        cnt = 0; 
-        solve(word,sb);
-        answer = cnt;
-        return answer;
+        solve(sb,0,word);
+        
+        return count;
     }
     
-    
-    static void solve(String word,StringBuilder sb) {
+    public static void solve(StringBuilder sb,int num,String word) {
         if(flag) return;
-        
-        if(word.equals(sb.toString())) {
-            flag = true;
-        }
-        
-        if(sb.length() == 5) return;
+        if(sb.toString().equals(word)) {
+                flag = true;
+                return;
+            }
+     
+                if(num == 5) return;
 
         
+        
         for(int i =0;i<5;i++) {
-            if(flag) break;
-            char c = w[i];
-            cnt++;
-            sb.append(c);
-            solve(word,sb);
-            sb.deleteCharAt(sb.length()-1);
-            
+        if(flag) return;
+        count++;
+        sb.append(dist[i]);        
+        solve(sb,num+1,word);
+        sb.deleteCharAt(sb.length()-1);
         }
-        
-   
-        
-        
     }
-    
 }
