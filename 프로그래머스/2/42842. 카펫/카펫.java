@@ -1,7 +1,7 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
-        int h = 3;
-        int w = 0;
+        int h = 3;      // 적어도 3
+        int w = 3;      // 적어도 3
         int size = brown + yellow;
         
         while(true) {
