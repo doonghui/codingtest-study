@@ -1,6 +1,5 @@
-
-
 import java.util.*;
+
 class Solution {
        static int count =0;
     static boolean[] visited;
