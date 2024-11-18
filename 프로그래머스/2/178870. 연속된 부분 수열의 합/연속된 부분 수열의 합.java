@@ -6,7 +6,7 @@ class Solution {
         int[] answer = new int[2];
         
         
-        long sum = 0;
+        int sum = 0;
         int lt = 0;
         int minLen = 1000001;
         
