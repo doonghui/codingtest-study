@@ -31,7 +31,6 @@ class Solution {
                 answer +=1;
             }
             
-            
             if (j +1 < discount.length)map.put(discount[j+1],map.getOrDefault(discount[j+1],0)+1);     // 다음날꺼 추가
             if(map.get(discount[j-9]) > 0) map.put(discount[j-9],map.get(discount[j-9])-1);      // 맨 앞의 날 감소
             
