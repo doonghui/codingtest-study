@@ -18,7 +18,6 @@ class Solution {
     static void bfs(int[][] maps,int x,int y, int endX,int endY) {
         
         Queue<int[]> q = new LinkedList<>();
-        
         q.add(new int[]{x,y,1});
         
         boolean flag = false;
