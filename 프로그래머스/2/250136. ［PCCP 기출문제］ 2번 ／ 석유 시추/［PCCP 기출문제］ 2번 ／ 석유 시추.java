@@ -35,30 +35,7 @@ class Solution {
             }
         }
         
-//            for(int i =0;i<land.length;i++) {
-//             for(int j =0;j<land[0].length;j++) {
-//                 System.out.print(land[i][j]+" ");
-//             }
-//                 System.out.println();
-               
-//         }
-        
-//                         System.out.println(n);
 
-        
-        
-//         for(int y = 0; y<land[0].length;y++) {
-//             int tmp = -1;
-//             int count =0;
-//             for(int x = 0; x<land.length;x++) {
-//                 if(land[x][y] > 1 && tmp != land[x][y]) {
-//                     tmp = land[x][y];
-//                     count += map.get(land[x][y]);
-//                 }
-
-//             }
-//             max = Math.max(max,count);
-//         }
         
         int max = 0;
         for(Integer count : map.values()) {
