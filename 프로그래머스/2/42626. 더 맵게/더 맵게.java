@@ -13,8 +13,6 @@ class Solution {
         
         for(Integer i : scoville) pq.add((long)i);
 
-        
-    // 1,3,8 실패 --> -1 처리 안함..
     while(!pq.isEmpty()) {
       long sco = pq.poll();
             
