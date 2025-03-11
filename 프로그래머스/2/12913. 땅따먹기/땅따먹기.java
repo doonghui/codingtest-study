@@ -8,7 +8,6 @@ class Solution {
         arr[0][2] = land[0][2];
         arr[0][3] = land[0][3];
         
-        
         for(int i =1;i<land.length;i++) {
             for(int j =0;j<4;j++) {
                             
