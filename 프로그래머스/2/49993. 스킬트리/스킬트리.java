@@ -38,16 +38,9 @@ class Solution {
             if(!flag) answer++;
             
         }
+   
         
-        
-        
-        // 스킬트리안에 c 하나가 스킬에 없음 무시
-        // 있을때 ~ -> 스킬의 순서에 맞는지 확인해봐야함
-        
-        // 
-        
-        
-        
+    
         return answer;
     }
 }
