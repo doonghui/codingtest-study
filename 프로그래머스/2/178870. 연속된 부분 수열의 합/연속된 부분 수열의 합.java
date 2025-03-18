@@ -33,51 +33,12 @@ class Solution {
         }
         
         
-        
-        
-//         for(int rt = 0;rt<sequence.length;rt++) {
-//             sum += sequence[rt];
-//             if(sum > k) {
-//                 while(sum > k || lt <rt) {
-//                     sum -= sequence[lt];
-//                     lt++;
-//                 if(sum == k) {
-//                 if(rt - lt < minLen) {
-//                     minLen = rt-lt;
-//                     answer[0] = lt;
-//                     answer[1] = rt;
-//                 }
-//             }
-//                 }
-//             }  else if(sum == k) {
-//                 if(rt - lt < minLen) {
-//                     minLen = rt-lt;
-//                     answer[0] = lt;
-//                     answer[1] = rt;
-//                 }
-//             }
-//                     // System.out.print(sum+" ");
 
-       
-//         }
-        
-        
         
         return answer;
     }
 }
 
 
-// 입력값 〉 [1, 2, 2, 2, 10], 1
-// 기댓값 〉 [0, 0]
-
-
-// 입력값 〉 [3, 24, 109, 159, 176, 255, 320, 367, 404, 919], 726
-// 기댓값 〉 [0, 5]
-// 실행 결과 〉 실행한 결괏값 [9,9]이 기댓값 [0,5]과 다릅니다.
-
-
-// 입력값 〉 [2, 2, 2, 2, 2, 10, 10, 10, 10, 10, 10], 30
-// 기댓값 〉 [5, 7]
 
 
