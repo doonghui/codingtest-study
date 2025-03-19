@@ -10,7 +10,7 @@ class Solution {
         for(int i =1;i<triangle.length;i++) {
             for(int j =0;j<triangle[i].length;j++) {
                 dp[i][j] = triangle[i][j];
-                if(j == 0) {                            // 0 일때
+                if(j == 0) {                            // 0 일때 
                     dp[i][j] += dp[i-1][j]; 
                 } else if(j == triangle[i].length-1) {  // 맨 끝일때
                     dp[i][j] += dp[i-1][j-1];
