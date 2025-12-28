@@ -5,18 +5,17 @@ class Solution
     public int solution(int []A, int []B)
     {
         int answer = 0;
-
+        
         Arrays.sort(A);
         Arrays.sort(B);
+        int size = A.length;
         
-        int idx = 0;
-        int reIdx = B.length -1;
-        while(idx < A.length && reIdx >= 0) {
-            answer += (A[idx] * B[reIdx]);
-            idx++;   
-            reIdx--;
-        
+        for(int i =0;i<size;i++) {
+            answer = answer + (A[i] * B[size-i-1]);
+            
+            
         }
+        
         
 
         return answer;
